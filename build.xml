@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="jar" name="jCathy">
+	<property name="version" value="0.6.8rc1"/>
+	
+	<property name="lib" value="lib"/>
+	<property name="src" value="src"/>
+	<property name="bin" value="bin"/>
+	
+	<property name="hsqldb" value="${lib}/hsqldb.jar"/>
+	
+	<!--property name="jarname" value="jcathy-${version}.jar"/-->
+	<property name="jarname" value="jcathy.jar"/>
+	
+	<path id="classpath">
+		<pathelement location="${src}"/>
+		<pathelement location="${hsqldb}"/>
+	</path>
+	
+	
+	<!-- initialization section -->
+	<target name="init" description="Create the required output dirs and copy not-java needed files">
+		<mkdir dir="${bin}"/>
+		<copy includeemptydirs="false" todir="${bin}">
+			<fileset dir="${src}" excludes="**/*.launch **/*.java **/*.svg **/*.form"/>
+		</copy>
+	</target>
+	
+	
+	<!-- cleaning section -->
+	<target name="clean" description="Delete every compiled file">
+		<delete dir="${bin}"/>
+		<delete>
+			<fileset dir="." includes="${jarname}"/>
+		</delete>
+	</target>
+	<target depends="clean" name="cleanall" description="same as clean"/>
+	
+	
+	<!-- building section -->
+	<target name="build" depends="init" description="Builds jCathy">
+		<javac debug="false" destdir="${bin}" target="1.6">
+			<src path="${src}"/>
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	<target name="jar" depends="build" description="Creates jcathy.jar file">
+		<jar jarfile="${jarname}" basedir="${bin}">
+			<manifest>
+				<attribute name="Main-Class" value="jdro.cathy.Cathy"/>
+				<attribute name="Class-Path" value="${hsqldb}"/>
+			</manifest>
+		</jar>
+		<echo message="Completed!"/>
+		<echo message="${ant.project.name} has been compiled and packed into jar file"/>
+		<echo message="'${lib}' directory and its content must be present in the same folder of ${jarname} file"/>
+	</target>
+
+</project>

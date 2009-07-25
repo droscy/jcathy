@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="300"
+   height="300"
+   id="svg2659"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   sodipodi:docbase="/home/simone/Documenti/WorkSpace/jDroCathy/img"
+   sodipodi:docname="delete.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs2661" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.2366667"
+     inkscape:cx="150"
+     inkscape:cy="150"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1432"
+     inkscape:window-height="869"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     height="300px"
+     width="300px" />
+  <metadata
+     id="metadata2664">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-127.63824,-184.0908)">
+    <path
+       d="M 399.96687,187.62122 C 347.43283,178.85181 259.17775,295.35503 240.68766,325.47691 C 194.1835,297.47014 170.28482,246.23607 148.47338,219.7565 C 140.26834,220.0641 134.56842,288.18578 212.74394,355.28355 C 192.40597,385.64056 170.49108,436.91022 191.32042,481.0303 C 208.87981,451.85199 231.3175,406.31102 248.13932,382.76154 C 278.41123,415.80145 348.36548,458.78129 383.20064,473.57864 C 408.60678,472.94554 409.85254,430.25245 399.03542,419.08838 C 372.5944,415.1074 326.14195,385.54503 284.46615,354.81783 C 303.78727,322.13007 367.85708,228.58472 405.0899,229.07107 C 414.81356,215.17775 413.20803,203.8108 399.96687,187.62122 z "
+       id="path6211"
+       style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+</svg>
