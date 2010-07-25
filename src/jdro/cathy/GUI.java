@@ -813,7 +813,6 @@ public class GUI extends javax.swing.JFrame {
 		{
 			String volume = volumeTable.getModel().getValueAt(volumeTable.getSelectedRow(), 0).toString();
 			new ConfirmDialog(volume);
-			//new ConfirmDialog(Cathy.lastSelectedVolume.getVolumeName());
 		}
 		
 		/**
@@ -869,7 +868,7 @@ public class GUI extends javax.swing.JFrame {
 				
 				pack();
 				setLocationRelativeTo(getOwner());
-				renameButton.requestFocusInWindow(); 
+				//renameButton.requestFocusInWindow(); 
 				setVisible(true);
 			}
 
@@ -890,8 +889,8 @@ public class GUI extends javax.swing.JFrame {
 						Cathy.DB.renameVolume(selectedVolumeName, newVolumeName);
 						MessageDialog.show(Messages.getString("GUI.renameConfirmDialog.MSG.successTitle"), //$NON-NLS-1$
 								Messages.getString("GUI.renameConfirmDialog.MSG.successMsg_pre") + selectedVolumeName + //$NON-NLS-1$
-									Messages.getString("GUI.renameConfirmDialog.MSG.successMsg_mid") + newVolumeName + //$NON-NLS-1$
-									Messages.getString("GUI.renameConfirmDialog.MSG.successMsg_post"), successIcon); //$NON-NLS-1$
+								Messages.getString("GUI.renameConfirmDialog.MSG.successMsg_mid") + newVolumeName + //$NON-NLS-1$
+								Messages.getString("GUI.renameConfirmDialog.MSG.successMsg_post"), successIcon); //$NON-NLS-1$
 						
 						setCursor(null);
 						
@@ -900,9 +899,17 @@ public class GUI extends javax.swing.JFrame {
 					catch(SQLException e)
 					{
 						e.printStackTrace();
+						
+						int errorCode = e.getErrorCode();
 						if(Cathy.DB.rollbackTransaction())
-							MessageDialog.show(Messages.getString("GUI.renameConfirmDialog.MSG.errorTitle"), //$NON-NLS-1$
-									Messages.getString("GUI.renameConfirmDialog.MSG.errorRolledBack"), errorIcon); //$NON-NLS-1$
+						{
+							if(errorCode == -104)
+								MessageDialog.show(Messages.getString("GUI.renameConfirmDialog.MSG.errorTitle"), //$NON-NLS-1$
+										Messages.getString("GUI.renameConfirmDialog.MSG.errorNameAlreadyExists"), errorIcon); //$NON-NLS-1$
+							else
+								MessageDialog.show(Messages.getString("GUI.renameConfirmDialog.MSG.errorTitle"), //$NON-NLS-1$
+										Messages.getString("GUI.renameConfirmDialog.MSG.errorRolledBack"), errorIcon); //$NON-NLS-1$
+						}
 						else
 							MessageDialog.show(Messages.getString("GUI.renameConfirmDialog.MSG.errorTitle"), //$NON-NLS-1$
 									Messages.getString("GUI.renameConfirmDialog.MSG.errorNotRolledBack"), errorIcon); //$NON-NLS-1$
