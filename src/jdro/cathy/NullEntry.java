@@ -1,10 +1,10 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.00
- |	(DESCRIPTION)
+ |	"jCathy" v0.7.2
+ |	(simple catalogator for removable devices)
  |	========================================
  |	by Simone Rossetto
- |	Copyright (C) 2007 Simone Rossetto
+ |	Copyright (C) 2007-2010 Simone Rossetto
  |	E-Mail: simros85@gmail.com
  |	========================================
  |	File created on 29/nov/07 18:59:18
@@ -42,7 +42,6 @@ public class NullEntry extends TableTreeEntryNode
 	private String volume;
 	
 	/**
-	 * @param icon
 	 * @param id
 	 * @param volume
 	 */

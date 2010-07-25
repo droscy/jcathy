@@ -1,10 +1,10 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.00
- |	(DESCRIPTION)
+ |	"jCathy" v0.7.2
+ |	(simple catalogator for removable devices)
  |	========================================
  |	by Simone Rossetto
- |	Copyright (C) 2007 Simone Rossetto
+ |	Copyright (C) 2007-2010 Simone Rossetto
  |	E-Mail: simros85@gmail.com
  |	========================================
  |	File created on 06/nov/07 19:44:09
@@ -52,6 +52,7 @@ public class Database
 	private String dbFileName;
 	private String lastError;
 	private boolean connected;
+	private boolean fk_created;
 	
 	private Connection connection;
 	private Statement stmt;
@@ -59,6 +60,8 @@ public class Database
 	private PreparedStatement insertVolumeStatement;
 	private PreparedStatement insertDirectoryStatement;
 	private PreparedStatement insertFileStatement;
+	
+	private PreparedStatement renameVolumeStatement;
 	
 	private PreparedStatement searchDirStatement;
 	private PreparedStatement searchFileStatement;
@@ -72,8 +75,8 @@ public class Database
 	private PreparedStatement createSubTreeStatement;
 	
 	private PreparedStatement deleteVolumeStatement;
-	private PreparedStatement deleteDirStatement;
-	private PreparedStatement deleteFileStatement;
+	//private PreparedStatement deleteDirStatement;
+	//private PreparedStatement deleteFileStatement;
 	
 	private PreparedStatement ignoreInsertStatement;
 	private PreparedStatement ignoreSelectStatement;
@@ -88,6 +91,7 @@ public class Database
 	{
 		this.dbFileName = dbFileName;
 		connected = false;
+		fk_created = false;
 		lastError = "";
 	}
 
@@ -121,19 +125,32 @@ public class Database
 				vect.add(rs.getString("TABLE_NAME"));
 		    }
 			
+			if(!vect.contains(Cathy.TABLEsettings.toUpperCase()))
+			{
+				executeUpdate
+				(
+					"SET IGNORECASE TRUE;" +
+					"CREATE TABLE " + Cathy.TABLEsettings + "(fk_created BOOLEAN NOT NULL);" +
+					"INSERT INTO " + Cathy.TABLEsettings + "(fk_created) VALUES (FALSE);"
+				);
+			}
+			
+			selectSettings();
+			
 			if(!vect.contains(Cathy.TABLEvolume.toUpperCase()))
 			{
 				executeUpdate
 				(
-					"SET IGNORECASE TRUE;"+
-					"CREATE TABLE "+Cathy.TABLEvolume +
-					"(name VARCHAR NOT NULL PRIMARY KEY," +
-					"size BIGINT NOT NULL,"+
-					"dirs INTEGER NOT NULL,"+
-					"files INTEGER NOT NULL,"+
-					"date DATE NOT NULL," +
-					"source LONGVARCHAR NOT NULL);"
-					//+"SET TABLE "+Cathy.TABLEvolume +" SOURCE \""+Cathy.TABLEvolume +".db\";"
+					"SET IGNORECASE TRUE;" +
+					"CREATE TABLE " + Cathy.TABLEvolume +
+					"(" +
+						"name VARCHAR NOT NULL PRIMARY KEY," +
+						"size BIGINT NOT NULL," +
+						"dirs INTEGER NOT NULL," +
+						"files INTEGER NOT NULL," +
+						"date DATE NOT NULL," +
+						"source LONGVARCHAR NOT NULL" +
+					");"
 				);
 			}
 			
@@ -142,18 +159,32 @@ public class Database
 				executeUpdate
 				(
 					"SET IGNORECASE TRUE;"+
-					"CREATE TABLE "+Cathy.TABLEdirectories+
-					"(id INTEGER NOT NULL," +
-					"volume VARCHAR NOT NULL," +
-					"name VARCHAR NOT NULL," +
-					"parent INTEGER NOT NULL," +
-					"size BIGINT NOT NULL,"+
-					"date DATE NOT NULL," +
-					"dirs INTEGER NOT NULL,"+
-					"files INTEGER NOT NULL,"+
-					"path LONGVARCHAR NOT NULL,"+
-					"PRIMARY KEY(id,volume));"
-					//+"SET TABLE "+Cathy.TABLEdirectories +" SOURCE \""+Cathy.TABLEdirectories +".db\";"
+					"CREATE TABLE " + Cathy.TABLEdirectories +
+					"(" +
+						"id INTEGER NOT NULL," +
+						"volume VARCHAR NOT NULL," +
+						"name VARCHAR NOT NULL," +
+						"parent INTEGER NOT NULL," +
+						"size BIGINT NOT NULL,"+
+						"date DATE NOT NULL," +
+						"dirs INTEGER NOT NULL," +
+						"files INTEGER NOT NULL," +
+						"path LONGVARCHAR NOT NULL,"+
+						"PRIMARY KEY(id,volume)," +
+						"CONSTRAINT directories_fk_volume " +
+							"FOREIGN KEY(volume) " +
+							"REFERENCES " + Cathy.TABLEvolume + "(name) ON UPDATE CASCADE ON DELETE CASCADE" +
+					");"
+				);
+			}
+			else if(!fk_created)
+			{
+				executeUpdate
+				(
+					"ALTER TABLE " + Cathy.TABLEdirectories + " " +
+					"ADD CONSTRAINT directories_fk_volume " + 
+						"FOREIGN KEY(volume) " +
+						"REFERENCES " + Cathy.TABLEvolume + "(name) ON UPDATE CASCADE ON DELETE CASCADE;"
 				);
 			}
 			
@@ -161,17 +192,31 @@ public class Database
 			{
 				executeUpdate
 				(
-					// TODO come eseguire una ricerca IGNORECASE senza però avere anche l'ingresso IC!!!
-					"SET IGNORECASE TRUE;"+
-					"CREATE TABLE "+Cathy.TABLEfiles+
-					"(volume VARCHAR NOT NULL," +
-					"directory INTEGER NOT NULL," +
-					"name VARCHAR NOT NULL," +
-					"date DATE NOT NULL," +
-					"size BIGINT NOT NULL," +
-					"path LONGVARCHAR NOT NULL,"+
-					"PRIMARY KEY(volume,directory,name));"
-					//+"SET TABLE "+Cathy.TABLEfiles +" SOURCE \""+Cathy.TABLEfiles +".db\";"
+					// FIXME come eseguire una ricerca IGNORECASE senza perÃ² avere anche l'ingresso IC!!!
+					"SET IGNORECASE TRUE;" +
+					"CREATE TABLE " + Cathy.TABLEfiles +
+					"(" +
+						"volume VARCHAR NOT NULL," +
+						"directory INTEGER NOT NULL," +
+						"name VARCHAR NOT NULL," +
+						"date DATE NOT NULL," +
+						"size BIGINT NOT NULL," +
+						"path LONGVARCHAR NOT NULL," +
+						"PRIMARY KEY(volume,directory,name)," +
+						"CONSTRAINT files_fk_directories " +
+							"FOREIGN KEY(directory,volume) " +
+							"REFERENCES " + Cathy.TABLEdirectories + "(id,volume) ON UPDATE CASCADE ON DELETE CASCADE" +
+					");"
+				);
+			}
+			else if(!fk_created)
+			{
+				executeUpdate
+				(
+					"ALTER TABLE " + Cathy.TABLEfiles + " " +
+					"ADD CONSTRAINT files_fk_directories " +
+						"FOREIGN KEY(directory,volume) " +
+						"REFERENCES " + Cathy.TABLEdirectories + "(id,volume) ON UPDATE CASCADE ON DELETE CASCADE;"
 				);
 			}
 			
@@ -185,10 +230,14 @@ public class Database
 				);
 			}
 			
+			executeUpdate("UPDATE " + Cathy.TABLEsettings + " SET fk_created=TRUE;");
+			
 			
 			insertVolumeStatement = connection.prepareStatement("INSERT INTO "+Cathy.TABLEvolume+" VALUES(?,?,?,?,?,?)");
 			insertDirectoryStatement = connection.prepareStatement("INSERT INTO "+Cathy.TABLEdirectories+" VALUES(?,?,?,?,?,?,?,?,?)");
 			insertFileStatement = connection.prepareStatement("INSERT INTO "+Cathy.TABLEfiles+" VALUES(?,?,?,?,?,?)");
+			
+			renameVolumeStatement = connection.prepareStatement("UPDATE " + Cathy.TABLEvolume + " SET name = ? WHERE name LIKE ?");
 			
 			searchDirStatement = connection.prepareStatement
 			(
@@ -256,17 +305,17 @@ public class Database
 				"WHERE name = ?"
 			);
 			
-			deleteDirStatement = connection.prepareStatement
+			/*deleteDirStatement = connection.prepareStatement // actually no more used
 			(
 				"DELETE FROM " + Cathy.TABLEdirectories + " "+
 				"WHERE volume = ?"
 			);
 			
-			deleteFileStatement = connection.prepareStatement
+			deleteFileStatement = connection.prepareStatement // actually no more used
 			(
 				"DELETE FROM " + Cathy.TABLEfiles + " "+
 				"WHERE volume = ?"
-			);
+			);*/
 			
 			ignoreInsertStatement = connection.prepareStatement("INSERT INTO "+Cathy.TABLEignore+" VALUES(?)");
 			ignoreSelectStatement = connection.prepareStatement("SELECT * FROM "+Cathy.TABLEignore);
@@ -274,15 +323,38 @@ public class Database
 
 			
 		}
+		catch(SQLException sql_e)
+		{
+			sql_e.printStackTrace();
+			lastError = sql_e.getMessage();
+			MessageDialog.show("SQL Exception is thrown", "SQL Exception: " + lastError, GUI.errorIcon);
+			connected = false;
+		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			lastError = e.getMessage();
-			MessageDialog.show("SQL Exception is thrown", "SQL Exception: "+lastError, GUI.errorIcon);
+			MessageDialog.show("Exception is thrown", "Exception: " + lastError, GUI.errorIcon);
 			connected = false;
 		}
 		
 		return connected;
+	}
+	
+	/**
+	 * Selects the settings form the database and stores them to local variables
+	 */
+	private void selectSettings() throws SQLException
+	{
+		stmt = connection.createStatement();
+		ResultSet rs_fk = stmt.executeQuery("SELECT * FROM " + Cathy.TABLEsettings);
+		if(rs_fk.next())
+		{
+			fk_created = rs_fk.getBoolean("fk_created");
+			// add here other settings, if they exist
+		}
+		rs_fk.close();
+		stmt.close();
 	}
 	
 	/**
@@ -332,7 +404,7 @@ public class Database
 		{
 			e.printStackTrace();
 			lastError = e.getMessage();
-			MessageDialog.show("SQL Exception is thrown", "SQL Exception: "+lastError, GUI.errorIcon);
+			MessageDialog.show("SQL Exception is thrown", "SQL Exception: " + lastError, GUI.errorIcon);
 			vectorOutput.clear();
 		}
 
@@ -340,7 +412,8 @@ public class Database
 	}
 
 	/**
-	 * Execute an updating query on the database
+	 * Execute an updating query on the database and shows an error message if an SQLException
+	 * is thrown.
 	 * @param query the query to be executed
 	 * @return true if the query succeded, false if a SQLException has been thrown
 	 */
@@ -358,11 +431,23 @@ public class Database
 		{
 			e.printStackTrace();
 			lastError = e.getMessage();
-			MessageDialog.show("SQL Exception is thrown", "SQL Exception: "+lastError, GUI.errorIcon);
+			MessageDialog.show("SQL Exception is thrown", "SQL Exception: " + lastError, GUI.errorIcon);
 			result = false;
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * Execute an updating query on the database
+	 * @param query the query to be executed
+	 * @exception SQLException if something goes wrong with the query
+	 */
+	public void executeUpdateWithoutErrMsg(String query) throws SQLException
+	{
+		stmt = connection.createStatement();
+		stmt.executeUpdate(query);
+		stmt.close();
 	}
 
 	/**
@@ -381,7 +466,7 @@ public class Database
 		{
 			e.printStackTrace();
 			lastError = e.getMessage();
-			MessageDialog.show("SQL Exception is thrown", "SQL Exception: "+lastError, GUI.errorIcon);
+			MessageDialog.show("SQL Exception is thrown", "SQL Exception: " + lastError, GUI.errorIcon);
 		}
 		return !connected;
 	}
@@ -454,9 +539,9 @@ public class Database
 	/**
 	 * Inserts a new Volume in the database
 	 * @param name the name of the new volume
-	 * @param size TODO
-	 * @param dirs TODO
-	 * @param files TODO
+	 * @param size total size of the volume in byte
+	 * @param dirs how many directories are present in the volume
+	 * @param files how manu files the volume contains
 	 * @param date the time of the creation of this new volume
 	 * @param path the starting path of the catalogation
 	 * @throws SQLException if some error occured during query
@@ -532,6 +617,29 @@ public class Database
 		}
 		else
 			throw new SQLException("New files can be inserted only if AutoCommit mode is disabled.");
+	}
+	
+	
+	protected void renameVolume(String oldname, String newname) throws SQLException
+	{
+		boolean settedAutocommitOff = false;
+		
+		if(connection.getAutoCommit() == true)
+		{
+			startTransaction();
+			settedAutocommitOff = true;
+		}
+
+		/*
+		 * Only volumes are directly updated because related directories
+		 * and files have foreign keys with "CASCADE" property setted.
+		 */
+		renameVolumeStatement.setString(1, newname);
+		renameVolumeStatement.setString(2, oldname);
+		renameVolumeStatement.executeUpdate();
+		
+		if(settedAutocommitOff)
+			commitTransaction();
 	}
 	
 	
@@ -760,16 +868,15 @@ public class Database
 			settedAutocommitOff = true;
 		}
 
-		deleteFileStatement.setString(1, name);
-		deleteFileStatement.executeUpdate();
-		deleteDirStatement.setString(1, name);
-		deleteDirStatement.executeUpdate();
+		/*
+		 * Only volumes are directly deleted because related directories
+		 * and files have foreign keys with "CASCADE" property setted.
+		 */
 		deleteVolumeStatement.setString(1, name);
 		deleteVolumeStatement.executeUpdate();
 		
 		if(settedAutocommitOff)
 			commitTransaction();
-
 	}
 	
 	

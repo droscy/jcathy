@@ -1,10 +1,10 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.00
- |	(DESCRIPTION)
+ |	"jCathy" v0.7.2
+ |	(simple catalogator for removable devices)
  |	========================================
  |	by Simone Rossetto
- |	Copyright (C) 2007 Simone Rossetto
+ |	Copyright (C) 2007-2010 Simone Rossetto
  |	E-Mail: simros85@gmail.com
  |	========================================
  |	File created on 11/nov/07 13:10:12
@@ -61,18 +61,6 @@ public class JTreeObserver extends JTree implements Observer
 	public static final Icon UP_ICON = GUI.upIcon;
 
 	private String lastVolume;
-
-	/*
-	 * This default construtor is neede during the first creation of the GUI
-	 * in order to display a default <code>JTree</code>
-	 * 
-	 * XXX now is not needed, left here only for debug purpose
-	 */
-	/*public JTreeObserver()
-	{
-		super();
-		lastVolume = null;
-	}*/
 
 	/**
 	 * @param newModel

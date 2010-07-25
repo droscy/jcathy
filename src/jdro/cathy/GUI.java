@@ -1,7 +1,31 @@
 /*
- * GUI.java
- *
- * Created on 6 novembre 2007, 16.42
+ +--------------------------------------------------------------------------------
+ |	"jCathy" v0.7.2
+ |	(simple catalogator for removable devices)
+ |	========================================
+ |	by Simone Rossetto
+ |	Copyright (C) 2007-2010 Simone Rossetto
+ |	E-Mail: simros85@gmail.com
+ |	========================================
+ |	File created on 6/nov/07 16:42:01
+ |	Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
+ +--------------------------------------------------------------------------------
+ |	This file is GUI.java, part of "jCathy"
+ |
+ |	"jCathy" is free software; you can redistribute it and/or modify
+ |	it under the terms of the GNU General Public License as published by
+ |	the Free Software Foundation; either version 2 of the License, or
+ |	(at your option) any later version.
+ |	
+ |	"jCathy" is distributed in the hope that it will be useful,
+ |	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ |	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ |	GNU General Public License for more details.
+ |
+ |	You should have received a copy of the GNU General Public License
+ |	along with this program; if not, write to the Free Software
+ |	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ +--------------------------------------------------------------------------------
  */
 
 package jdro.cathy;
@@ -54,9 +78,8 @@ import jdro.cathy.resources.Messages;
 
 /**
  * TODO inserire introduzione, la ricerca va fatta senza * manuale e insensibile alle maiuscole
- * TODO fare in modo che la colonna dell'albero possa essere ridimensionata
  * @author Simone Rossetto
- * @version 3.1 2009-01-16
+ * @version 3.2 2010-07-25
  */
 @SuppressWarnings("serial") //$NON-NLS-1$
 public class GUI extends javax.swing.JFrame {
@@ -66,6 +89,7 @@ public class GUI extends javax.swing.JFrame {
 	private static SearchFunctionAction sfAction;
 	private static AddNewVolumeAction anvAction;
 	private static DeleteVolumeAction delvAction;
+	private static RenameVolumeAction renvAction;
 	
 	private static CopyInfo copyInfoDialog;
 	
@@ -117,6 +141,7 @@ public class GUI extends javax.swing.JFrame {
     	sfAction = new SearchFunctionAction();
     	anvAction = new AddNewVolumeAction();
     	delvAction = new DeleteVolumeAction();
+    	renvAction = new RenameVolumeAction();
     	
         initComponents();
         
@@ -531,6 +556,7 @@ public class GUI extends javax.swing.JFrame {
 				if(volumeTable.getSelectedRow() != -1)
 				{
 					menuVolume.menuItemDelete.setEnabled(true);
+					menuVolume.menuItemRename.setEnabled(true);
 					/*
 					 * TODO da aggiungere quando implementato il Refresh
 					 * menuVolume.menuItemRefresh.setEnabled(true);
@@ -539,6 +565,7 @@ public class GUI extends javax.swing.JFrame {
 				else
 				{
 					menuVolume.menuItemDelete.setEnabled(false);
+					menuVolume.menuItemRename.setEnabled(false);
 					/*
 					 * TODO da aggiungere quando implementato il Refresh
 					 * menuVolume.menuItemRefresh.setEnabled(false);
@@ -644,6 +671,7 @@ public class GUI extends javax.swing.JFrame {
 	 */
 	protected class CatalogPopupMenu extends JPopupMenu implements MouseListener
 	{		
+		private JMenuItem menuItemRename;
 		private JMenuItem menuItemDelete;
 		private JMenuItem menuItemRefresh;
 		
@@ -655,6 +683,10 @@ public class GUI extends javax.swing.JFrame {
 		public CatalogPopupMenu()
 		{
 			super();
+			menuItemRename = new JMenuItem(Messages.getString("GUI.menuRenameName")); //$NON-NLS-1$
+			menuItemRename.addActionListener(renvAction);
+			add(menuItemRename);
+			
 			menuItemDelete = new JMenuItem(Messages.getString("GUI.menuDeleteName"),deleteIcon); //$NON-NLS-1$
 			menuItemDelete.addActionListener(delvAction);
 			add(menuItemDelete);
@@ -699,6 +731,7 @@ public class GUI extends javax.swing.JFrame {
 	protected class VolumeMenuObserver extends JMenu implements Observer
 	{
 		private JMenuItem menuItemAdd;
+		private JMenuItem menuItemRename;
 		private JMenuItem menuItemDelete;
 		private JMenuItem menuItemRefresh;
 		
@@ -710,6 +743,10 @@ public class GUI extends javax.swing.JFrame {
 			menuItemAdd = new JMenuItem(Messages.getString("GUI.volumeAddButtonText"),addIcon); //$NON-NLS-1$
 			menuItemAdd.addActionListener(anvAction);
 			add(menuItemAdd);
+			
+			menuItemRename = new JMenuItem(Messages.getString("GUI.menuRenameName")); //$NON-NLS-1$
+			menuItemRename.addActionListener(renvAction);
+			add(menuItemRename);
 			
 			menuItemDelete = new JMenuItem(Messages.getString("GUI.menuDeleteName"),deleteIcon); //$NON-NLS-1$
 			menuItemDelete.addActionListener(delvAction);
@@ -726,6 +763,7 @@ public class GUI extends javax.swing.JFrame {
 			menuItemRefresh.setToolTipText(Messages.getString("GUI.notImplemented")); //$NON-NLS-1$
 			
 			menuItemDelete.setEnabled(false);
+			menuItemRename.setEnabled(false);
 			menuItemRefresh.setEnabled(false);
 			
 			setEnabled(false);
@@ -738,21 +776,142 @@ public class GUI extends javax.swing.JFrame {
 			if(arg != null)
 			{
 				menuItemDelete.setEnabled(true);
+				menuItemRename.setEnabled(true);
 				/*
-				 * TODO da aggiungere quando implementato
+				 * TODO da aggiungere quando implementato il Refresh
 				 * menuItemRefresh.setEnabled(true);
 				 */
 			}
 			else
 			{
 				menuItemDelete.setEnabled(false);
+				menuItemRename.setEnabled(false);
 				/*
-				 * TODO da aggiungere quando implementato
+				 * TODO da aggiungere quando implementato il Refresh
 				 * menuItemRefresh.setEnabled(false);
 				 */
 			}
 		}
 		
+	}
+	
+	
+	/**
+	 * This class contains the method needed to rename a volume already cataloged
+	 */
+	private class RenameVolumeAction implements ActionListener
+	{
+		private String selectedVolumeName;
+		private String newVolumeName;
+		
+		/**
+		 * When the user click over a "Rename volume" item this method shows a 
+		 * confirmation dialog to ask the user to insert the new name
+		 * @param ignore
+		 */
+		public void actionPerformed(ActionEvent ignore)
+		{
+			String volume = volumeTable.getModel().getValueAt(volumeTable.getSelectedRow(), 0).toString();
+			new ConfirmDialog(volume);
+			//new ConfirmDialog(Cathy.lastSelectedVolume.getVolumeName());
+		}
+		
+		/**
+		 * Subclass that represent a confirmation dialog before deleting
+		 */
+		private class ConfirmDialog extends JDialog implements ActionListener
+		{
+			private JPanel namePanel;
+			private JLabel msgLabel;
+			private JTextField newNameText;
+			private JPanel buttonPanel;
+			private JButton renameButton;
+			private JButton cancelButton;
+			
+			/**
+			 * Creates a new <code>ConfirmDialog</code> setting the name of the volume
+			 * to be deleted
+			 * @param volumeName the name of the volume to be deleted
+			 */
+			public ConfirmDialog(String volumeName)
+			{
+				super(GUI.this, Messages.getString("GUI.renameConfirmDialog.Title")); //$NON-NLS-1$
+				setModal(true);
+				setResizable(false);
+				
+				selectedVolumeName = volumeName.replaceAll("<(html|/html|b|/b)>", ""); //$NON-NLS-1$ //$NON-NLS-2$
+				
+				namePanel = new JPanel();
+				namePanel.setLayout(new FlowLayout());
+				{
+					msgLabel = new JLabel(Messages.getString("GUI.renameConfirmDialog.label_new_name")); //$NON-NLS-1$
+					newNameText = new JTextField(selectedVolumeName,15);
+				}
+				namePanel.add(msgLabel);
+				namePanel.add(newNameText);
+				
+				buttonPanel = new JPanel();				
+				buttonPanel.setLayout(new FlowLayout());
+				buttonPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+				{
+					renameButton = new JButton(Messages.getString("rename")); //$NON-NLS-1$
+					renameButton.addActionListener(this);
+					renameButton.registerKeyboardAction(this, KeyStroke.getKeyStroke("ENTER"), JComponent.WHEN_IN_FOCUSED_WINDOW); //$NON-NLS-1$
+					cancelButton = new JButton(Messages.getString("cancel")); //$NON-NLS-1$
+					cancelButton.addActionListener(this);
+					cancelButton.registerKeyboardAction(this, KeyStroke.getKeyStroke("ENTER"), JComponent.WHEN_FOCUSED); //$NON-NLS-1$
+				}
+				buttonPanel.add(renameButton);
+				buttonPanel.add(cancelButton);
+				
+				add(namePanel,BorderLayout.NORTH);
+				add(buttonPanel, BorderLayout.SOUTH);
+				
+				pack();
+				setLocationRelativeTo(getOwner());
+				renameButton.requestFocusInWindow(); 
+				setVisible(true);
+			}
+
+			
+			/**
+			 * If the user clicks on "Delete" button the volume will be deleted
+			 * otherwise nothing is done
+			 * @param event needed to get the source of the click
+			 */
+			public void actionPerformed(ActionEvent event)
+			{
+				if(event.getSource() == renameButton)
+				{
+					newVolumeName = newNameText.getText();
+					try
+					{
+						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+						Cathy.DB.renameVolume(selectedVolumeName, newVolumeName);
+						MessageDialog.show(Messages.getString("GUI.renameConfirmDialog.MSG.successTitle"), //$NON-NLS-1$
+								Messages.getString("GUI.renameConfirmDialog.MSG.successMsg_pre") + selectedVolumeName + //$NON-NLS-1$
+									Messages.getString("GUI.renameConfirmDialog.MSG.successMsg_mid") + newVolumeName + //$NON-NLS-1$
+									Messages.getString("GUI.renameConfirmDialog.MSG.successMsg_post"), successIcon); //$NON-NLS-1$
+						
+						setCursor(null);
+						
+						Cathy.lastSelectedVolume.setVolumeName(null);
+					}
+					catch(SQLException e)
+					{
+						e.printStackTrace();
+						if(Cathy.DB.rollbackTransaction())
+							MessageDialog.show(Messages.getString("GUI.renameConfirmDialog.MSG.errorTitle"), //$NON-NLS-1$
+									Messages.getString("GUI.renameConfirmDialog.MSG.errorRolledBack"), errorIcon); //$NON-NLS-1$
+						else
+							MessageDialog.show(Messages.getString("GUI.renameConfirmDialog.MSG.errorTitle"), //$NON-NLS-1$
+									Messages.getString("GUI.renameConfirmDialog.MSG.errorNotRolledBack"), errorIcon); //$NON-NLS-1$
+					}
+					volumeTable.refresh();
+				}
+				setVisible(false);
+			}
+		}
 	}
 	
 	
@@ -858,7 +1017,7 @@ public class GUI extends javax.swing.JFrame {
 	}
 	
 	
-	/* TODO da implementare
+	/* TODO da implementare il Refresh
 	private class RefreshVolumeAction implements ActionListener
 	{
 		private String selectedVolumeName;
@@ -866,7 +1025,7 @@ public class GUI extends javax.swing.JFrame {
 
 		public void actionPerformed(ActionEvent e)
 		{
-			// TODO Auto-generated method stub
+			// Auto-generated method stub
 			
 		}
 		

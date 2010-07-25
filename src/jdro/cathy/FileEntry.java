@@ -1,10 +1,10 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.00
- |	(DESCRIPTION)
+ |	"jCathy" v0.7.2
+ |	(simple catalogator for removable devices)
  |	========================================
  |	by Simone Rossetto
- |	Copyright (C) 2007 Simone Rossetto
+ |	Copyright (C) 2007-2010 Simone Rossetto
  |	E-Mail: simros85@gmail.com
  |	========================================
  |	File created on 29/nov/07 16:45:59
@@ -47,13 +47,10 @@ public class FileEntry extends TableTreeEntryNode
 	
 	/**
 	 * @param icon
-	 * @param id
 	 * @param name
 	 * @param volume
 	 * @param parentId
 	 * @param size
-	 * @param dirs
-	 * @param files
 	 * @param date
 	 * @param pathStr
 	 */

@@ -1,10 +1,10 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.00
- |	(DESCRIPTION)
+ |	"jCathy" v0.7.2
+ |	(simple catalogator for removable devices)
  |	========================================
  |	by Simone Rossetto
- |	Copyright (C) 2007 Simone Rossetto
+ |	Copyright (C) 2007-2010 Simone Rossetto
  |	E-Mail: simros85@gmail.com
  |	========================================
  |	File created on 04/nov/07 16:51:26
@@ -37,18 +37,18 @@ import jdro.cathy.resources.Messages;
 
 
 /**
- * \mainpage TODO Che deve essere scritta
- * TODO spostare il file del database nella sottocartella ./db/
+ * @mainpage TODO deve essere scritta la mainpage del programma
  * TODO inserire ordinamento delle colonne
  * TODO creare import/export del database in formato XML
+ * TODO trovare icona per il pulsante Rename
  * @author Simone Rossetto
- * @version 0.7.1 rc1
+ * @version 0.7.2
  */
 public class Cathy
 {
 	public static final String NAME = "jCathy"; //$NON-NLS-1$
-	public static final String VERSION = "v0.7.1 rc1"; //$NON-NLS-1$
-	public static final String YEAR = "2008"; //$NON-NLS-1$
+	public static final String VERSION = "v0.7.2"; //$NON-NLS-1$
+	public static final String YEAR = "2007-2010"; //$NON-NLS-1$
 	public static final String ICON_PATH = "jdro/cathy/images/";
 	public static final String ICON_FILENAME = ICON_PATH + "jcathy.png"; //$NON-NLS-1$
 	
@@ -79,6 +79,7 @@ public class Cathy
 	protected static final String TABLEdirectories = "directories"; //$NON-NLS-1$
 	protected static final String TABLEfiles = "files"; //$NON-NLS-1$
 	protected static final String TABLEignore = "ignore"; //$NON-NLS-1$
+	protected static final String TABLEsettings = "settings"; //$NON-NLS-1$
 	
 	protected static final Database DB = new Database(LOCAL_PATH + "jcathy.db"); //$NON-NLS-1$
 	
@@ -123,5 +124,4 @@ public class Cathy
 				DB.disconnect();
 		}
 	}
-
 }
