@@ -1,6 +1,6 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.7.2
+ |	"jCathy" v0.7.3
  |	(simple catalogator for removable devices)
  |	========================================
  |	by Simone Rossetto
@@ -79,7 +79,7 @@ import jdro.cathy.resources.Messages;
 /**
  * TODO inserire introduzione, la ricerca va fatta senza * manuale e insensibile alle maiuscole
  * @author Simone Rossetto
- * @version 3.2 2010-07-25
+ * @version 3.2.1 2010-08-15
  */
 @SuppressWarnings("serial") //$NON-NLS-1$
 public class GUI extends javax.swing.JFrame {
@@ -1277,8 +1277,9 @@ public class GUI extends javax.swing.JFrame {
 							
 							Cathy.DB.startTransaction();
 							{
+								Cathy.DB.insertVolume(volumeNameTextField.getText(), 0, 0, 0, currentTime, rootPath.getText());
 								long[] param = catalog(content, dirId, Character.toString(SEPARATOR));
-								Cathy.DB.insertVolume(volumeNameTextField.getText(), param[0], (int)param[1], (int)param[2], currentTime, rootPath.getText());
+								Cathy.DB.updateVolumeSizes(volumeNameTextField.getText(), param[0], (int)param[1], (int)param[2]);
 								setCursor(null);
 							}
 							Cathy.DB.commitTransaction();
@@ -1333,7 +1334,7 @@ public class GUI extends javax.swing.JFrame {
 				{
 					if(!pattern.matcher(f.getName()).matches())
 					{
-						Cathy.DB.insertFile(volumeNameTextField.getText(), parent, f.getName(), f.lastModified(), f.length(),currentPath);
+						Cathy.DB.insertFile(volumeNameTextField.getText(), parent, f.getName(), f.lastModified(), f.length(), currentPath);
 						param[0] += f.length();
 						param[2]++;
 					}
@@ -1341,8 +1342,9 @@ public class GUI extends javax.swing.JFrame {
 				else if(f.isDirectory())
 				{
 					int oldId = dirId;
+					Cathy.DB.insertDir(oldId, volumeNameTextField.getText(), f.getName(), parent, 0, f.lastModified(), 0, 0, currentPath);
 					long[] subParam = catalog(f.listFiles(),dirId,currentPath+f.getName()+SEPARATOR);
-					Cathy.DB.insertDir(oldId, volumeNameTextField.getText(), f.getName(), parent, subParam[0], f.lastModified(),(int)subParam[1],(int)subParam[2],currentPath);
+					Cathy.DB.updateDirSizes(oldId, volumeNameTextField.getText(), subParam[0], (int)subParam[1], (int)subParam[2]);
 					param[0] += subParam[0];
 					param[1] += subParam[1]+1;
 					param[2] += subParam[2];

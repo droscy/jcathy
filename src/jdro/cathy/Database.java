@@ -1,6 +1,6 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.7.2
+ |	"jCathy" v0.7.3
  |	(simple catalogator for removable devices)
  |	========================================
  |	by Simone Rossetto
@@ -45,7 +45,7 @@ import java.util.Vector;
  * This class is adapted for jCathy so that the result of a normal query
  * will return a model needed for the creation of a JTable
  * @author Simone Rossetto
- * @version 2.1.1
+ * @version 2.1.2
  */
 public class Database
 {
@@ -62,6 +62,8 @@ public class Database
 	private PreparedStatement insertFileStatement;
 	
 	private PreparedStatement renameVolumeStatement;
+	private PreparedStatement updateVolumeStatement;
+	private PreparedStatement updateDirectoryStatement;
 	
 	private PreparedStatement searchDirStatement;
 	private PreparedStatement searchFileStatement;
@@ -238,6 +240,8 @@ public class Database
 			insertFileStatement = connection.prepareStatement("INSERT INTO "+Cathy.TABLEfiles+" VALUES(?,?,?,?,?,?)");
 			
 			renameVolumeStatement = connection.prepareStatement("UPDATE " + Cathy.TABLEvolume + " SET name = ? WHERE name LIKE ?");
+			updateVolumeStatement = connection.prepareStatement("UPDATE " + Cathy.TABLEvolume + " SET size = ?, dirs = ?, files = ? WHERE name LIKE ?");
+			updateDirectoryStatement = connection.prepareStatement("UPDATE " + Cathy.TABLEdirectories + " SET size = ?, dirs = ?, files = ? WHERE id = ? AND volume LIKE ?");
 			
 			searchDirStatement = connection.prepareStatement
 			(
@@ -619,7 +623,12 @@ public class Database
 			throw new SQLException("New files can be inserted only if AutoCommit mode is disabled.");
 	}
 	
-	
+	/**
+	 * Rename one volume
+	 * @param oldname the old name and primary key of the volume
+	 * @param newname the new name to set for the volume
+	 * @throws SQLException
+	 */
 	protected void renameVolume(String oldname, String newname) throws SQLException
 	{
 		boolean settedAutocommitOff = false;
@@ -641,6 +650,57 @@ public class Database
 		if(settedAutocommitOff)
 			commitTransaction();
 	}
+	
+	
+	/**
+	 * Updates the three size parameters for the volume with name <code>name</code>.
+	 * @param name the name (primary key of the volume)
+	 * @param size the new size (in bytes of the volume)
+	 * @param dirs how many dirs are present in the volume
+	 * @param files how many files are present in the volume
+	 * @throws SQLException
+	 */
+	protected void updateVolumeSizes(String name, long size, int dirs, int files) throws SQLException
+	{
+		if(connection.getAutoCommit()==false)
+		{
+			updateVolumeStatement.setLong(1, size);
+			updateVolumeStatement.setInt(2, dirs);
+			updateVolumeStatement.setInt(3, files);
+			updateVolumeStatement.setString(4, name);
+			updateVolumeStatement.executeUpdate();
+			
+			updateDirSizes(0,name,size,dirs,files);
+		}
+		else
+			throw new SQLException("New volumes can be inserted only if AutoCommit mode is disabled.");
+	}
+	
+	
+	/**
+	 * Updates the size parameters of this directory
+	 * @param id the primary key of the directory
+	 * @param volume the name of the volume which this directory belongs to
+	 * @param size the new size (in bytes of the directory)
+	 * @param dirs how many dirs are present inside this directory
+	 * @param files how many files are present inside this directory
+	 * @throws SQLException
+	 */
+	protected void updateDirSizes(int id, String volume, long size, int dirs, int files) throws SQLException
+	{
+		if(connection.getAutoCommit()==false)
+		{			
+			updateDirectoryStatement.setLong(1, size);
+			updateDirectoryStatement.setInt(2, dirs);
+			updateDirectoryStatement.setInt(3, files);
+			updateDirectoryStatement.setInt(4, id);
+			updateDirectoryStatement.setString(5, volume);
+			updateDirectoryStatement.executeUpdate();
+		}
+		else
+			throw new SQLException("New directories can be inserted only if AutoCommit mode is disabled.");
+	}
+
 	
 	
 	/**

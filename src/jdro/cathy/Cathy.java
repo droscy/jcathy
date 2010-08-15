@@ -1,6 +1,6 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.7.2
+ |	"jCathy" v0.7.3
  |	(simple catalogator for removable devices)
  |	========================================
  |	by Simone Rossetto
@@ -42,12 +42,12 @@ import jdro.cathy.resources.Messages;
  * TODO creare import/export del database in formato XML
  * TODO trovare icona per il pulsante Rename
  * @author Simone Rossetto
- * @version 0.7.2
+ * @version 0.7.3
  */
 public class Cathy
 {
 	public static final String NAME = "jCathy"; //$NON-NLS-1$
-	public static final String VERSION = "v0.7.2"; //$NON-NLS-1$
+	public static final String VERSION = "v0.7.3"; //$NON-NLS-1$
 	public static final String YEAR = "2007-2010"; //$NON-NLS-1$
 	public static final String ICON_PATH = "jdro/cathy/images/";
 	public static final String ICON_FILENAME = ICON_PATH + "jcathy.png"; //$NON-NLS-1$
