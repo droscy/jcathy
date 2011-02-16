@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." default="jar" name="jCathy">
-	<property name="version" value="0.6.8rc1"/>
+	<property name="version" value="0.7.3"/>
 	
 	<property name="lib" value="lib"/>
 	<property name="src" value="src"/>
@@ -8,7 +8,6 @@
 	
 	<property name="hsqldb" value="${lib}/hsqldb.jar"/>
 	
-	<!--property name="jarname" value="jcathy-${version}.jar"/-->
 	<property name="jarname" value="jcathy.jar"/>
 	
 	<path id="classpath">
@@ -18,7 +17,7 @@
 	
 	
 	<!-- initialization section -->
-	<target name="init" description="Create the required output dirs and copy not-java needed files">
+	<target name="init" description="Creates the required output folders and copies non-java needed files">
 		<mkdir dir="${bin}"/>
 		<copy includeemptydirs="false" todir="${bin}">
 			<fileset dir="${src}" excludes="**/*.launch **/*.java **/*.svg **/*.form"/>
@@ -27,18 +26,18 @@
 	
 	
 	<!-- cleaning section -->
-	<target name="clean" description="Delete every compiled file">
+	<target name="clean" description="Cleans the source tree removing binaries">
 		<delete dir="${bin}"/>
 		<delete>
 			<fileset dir="." includes="${jarname}"/>
 		</delete>
 	</target>
-	<target depends="clean" name="cleanall" description="same as clean"/>
+	<target depends="clean" name="cleanall" description="Same as 'clean'"/>
 	
 	
 	<!-- building section -->
 	<target name="build" depends="init" description="Builds jCathy">
-		<javac debug="false" destdir="${bin}" target="1.6">
+		<javac debug="false" destdir="${bin}" target="1.6" includeantruntime="false">
 			<src path="${src}"/>
 			<classpath refid="classpath"/>
 		</javac>
@@ -52,8 +51,7 @@
 			</manifest>
 		</jar>
 		<echo message="Completed!"/>
-		<echo message="${ant.project.name} has been compiled and packed into jar file"/>
+		<echo message="${ant.project.name} has been built and packaged into jar file"/>
 		<echo message="'${lib}' directory and its content must be present in the same folder of ${jarname} file"/>
 	</target>
-
 </project>

@@ -1,4 +1,31 @@
 #!/bin/bash 
+# +--------------------------------------------------------------------------------
+# |  "jCathy" v0.7.3+svn
+# |  (simple cataloguer for removable devices)
+# |  ========================================
+# |  by Simone Rossetto
+# |  Copyright (C) 2007-2011 Simone Rossetto
+# |  E-Mail: simros85@gmail.com
+# |  ========================================
+# |  File created on 2011-02-16 17:05:04
+# |  Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
+# +--------------------------------------------------------------------------------
+# |  This file is jcathy, part of "jCathy"
+# |
+# |  This program is free software; you can redistribute it and/or modify
+# |  it under the terms of the GNU General Public License as published by
+# |  the Free Software Foundation; either version 2 of the License, or
+# |  (at your option) any later version.
+# |
+# |  This program is distributed in the hope that it will be useful,
+# |  but WITHOUT ANY WARRANTY; without even the implied warranty of
+# |  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# |  GNU General Public License for more details.
+# |
+# |  You should have received a copy of the GNU General Public License along
+# |  with this program; if not, write to the Free Software Foundation, Inc.,
+# |  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# +--------------------------------------------------------------------------------
 
 JAVA=$(which java)
 
@@ -14,8 +41,14 @@ VERSION=$(expr match "$VERSION" '.*"\([0-9]*\.[0-9]*\)\.[0-9_]*"')
 
 if [[ $VERSION > 1.6 || $VERSION = 1.6 ]]; then
 	echo "jCathy is loading..."
-	$JAVA -version:"1.6+" -jar jcathy.jar
+
+	# Edit to following line prepending to jcathy.jar the full path
+	# where you have installed that file. A common path in Debian
+	# system can be /usr/share/java/ and the whole command will become
+	# $JAVA -jar /usr/share/java/jcathy.jar
+	$JAVA -jar jcathy.jar
 else
 	echo -e "jCathy needs java version >= 1.6 (your version is $FULL_VERSION)"
 	exit 1
 fi
+

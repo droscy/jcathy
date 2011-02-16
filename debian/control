@@ -1,0 +1,21 @@
+Source: jcathy
+Section: utils
+Priority: optional
+Maintainer: Simone Rossetto <simros85@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~), ant, default-jdk | java-compiler | java-sdk
+Standards-Version: 3.9.1
+Homepage: https://github.com/droscy/jcathy
+Vcs-Git: https://github.com/droscy/jcathy.git
+Vcs-Browser: https://github.com/droscy/jcathy
+
+Package: jcathy
+Architecture: all
+Depends: java-runtime, libhsqldb-java, ${misc:Depends}
+Description: Simple cataloguer for removable devices
+ With this program you can retrive the list of files and folders of a
+ removable device (or a folder in the system) and stores them in a database,
+ assigning a unique identifier (of your choice) to the volume being catalogued.
+ .
+ This database can be later searched by file/folder name to get the name of
+ the volume which that file/folder belongs to, so users can easily locate theirs
+ files over a huge list of volumes.

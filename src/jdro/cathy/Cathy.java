@@ -1,30 +1,30 @@
 /*
  +--------------------------------------------------------------------------------
- |	"jCathy" v0.7.3
- |	(simple catalogator for removable devices)
- |	========================================
- |	by Simone Rossetto
- |	Copyright (C) 2007-2010 Simone Rossetto
- |	E-Mail: simros85@gmail.com
- |	========================================
- |	File created on 04/nov/07 16:51:26
- |	Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
+ |  "jCathy" v0.7.3+svn
+ |  (simple cataloguer for removable devices)
+ |  ========================================
+ |  by Simone Rossetto
+ |  Copyright (C) 2007-2011 Simone Rossetto
+ |  E-Mail: simros85@gmail.com
+ |  ========================================
+ |  File created on 04/nov/07 16:51:26
+ |  Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
  +--------------------------------------------------------------------------------
- |	This file is Cathy.java, part of "jCathy"
+ |  This file is Cathy.java, part of "jCathy"
  |
- |	"jCathy" is free software; you can redistribute it and/or modify
- |	it under the terms of the GNU General Public License as published by
- |	the Free Software Foundation; either version 2 of the License, or
- |	(at your option) any later version.
- |	
- |	"jCathy" is distributed in the hope that it will be useful,
- |	but WITHOUT ANY WARRANTY; without even the implied warranty of
- |	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- |	GNU General Public License for more details.
+ |  This program is free software; you can redistribute it and/or modify
+ |  it under the terms of the GNU General Public License as published by
+ |  the Free Software Foundation; either version 2 of the License, or
+ |  (at your option) any later version.
  |
- |	You should have received a copy of the GNU General Public License
- |	along with this program; if not, write to the Free Software
- |	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ |  This program is distributed in the hope that it will be useful,
+ |  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ |  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ |  GNU General Public License for more details.
+ |
+ |  You should have received a copy of the GNU General Public License along
+ |  with this program; if not, write to the Free Software Foundation, Inc.,
+ |  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  +--------------------------------------------------------------------------------
  */
 package jdro.cathy;
@@ -41,14 +41,16 @@ import jdro.cathy.resources.Messages;
  * TODO inserire ordinamento delle colonne
  * TODO creare import/export del database in formato XML
  * TODO trovare icona per il pulsante Rename
+ * TODO Fare in modo che solo la ricerca sia IgnoreCase, ma non la memorizzazione sul database!
+ * TODO Scrivere l'Usage nel README
  * @author Simone Rossetto
- * @version 0.7.3
+ * @version 0.7.3+svn
  */
 public class Cathy
 {
 	public static final String NAME = "jCathy"; //$NON-NLS-1$
-	public static final String VERSION = "v0.7.3"; //$NON-NLS-1$
-	public static final String YEAR = "2007-2010"; //$NON-NLS-1$
+	public static final String VERSION = "v0.7.3+svn"; //$NON-NLS-1$
+	public static final String YEAR = "2007-2011"; //$NON-NLS-1$
 	public static final String ICON_PATH = "jdro/cathy/images/";
 	public static final String ICON_FILENAME = ICON_PATH + "jcathy.png"; //$NON-NLS-1$
 	

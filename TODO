@@ -1,1 +1,8 @@
-Fare in modo che solo la ricerca sia IgnoreCase, ma non la memorizzazione sul database!
+TODOs
+~~~~~
+ - Fare in modo che solo la ricerca sia IgnoreCase, ma non la memorizzazione sul database!
+ - Scrivere l'Usage nel README e nella manpage
+ - deve essere scritta la mainpage del programma
+ - inserire ordinamento delle colonne
+ - creare import/export del database in formato XML
+ - trovare icona per il pulsante Rename

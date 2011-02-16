@@ -1,0 +1,100 @@
+jCathy README
+~~~~~~~~~~~~
+   jCathy v0.7.3+svn
+   Copyright (C) 2007-2011 Simone Rossetto
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY.
+
+
+Description
+~~~~~~~~~~~
+ jCathy retrives the list of files and folders of a removable device
+ (or a folder in the system) and stores them in a database, assigning a
+ unique identifier (choosen by the user) to the volume. This database
+ can be searched by file/folder name to get the name of the volume which
+ that file/folder belongs to, so users can easily locate theirs files.
+
+
+ChangeLog
+~~~~~~~~~
+ * 0.7.3+svn (under development)
+     o Added this README and this Changelog
+     o Created debian subfolder to build and install this program in
+       Debian-based systems
+     o ...
+
+ * 0.7.3 [????]
+     o Volumes' names can now be changed
+
+
+Requirements
+~~~~~~~~~~~~
+ Building:
+   * Java SE JDK v1.6 (http://www.oracle.com/technetwork/java/index.html)
+   * Apache Ant (http://ant.apache.org/)
+
+ Running:
+   * Java SE JRE v1.6 (http://www.oracle.com/technetwork/java/index.html)
+   * HyperSQL v1.8.10 (http://hsqldb.org/)
+
+
+Building and Installing
+~~~~~~~~~~~~~~~~~~~~~~~
+ To build jCathy you need to have Jave SE JDK and Apache Ant installed
+ on your system.
+
+ Once done open a shell terminal (like DOS Command Prompt on Windows, or
+ Konsole on GNU/Linux) move to the folder containing the source tree of
+ jCathy and simply execute 'ant'.
+
+ After a successfull building, create the subfolder 'lib' in the same folder
+ of jcathy.jar and copy in there the file hsqldb.jar downloaded from the
+ HyperSQL website. On Windows you can simply double-click on jcathy.jar to
+ start the program, on GNU/Linux edit the file jcathy on line 49, set the
+ path to your jcathy.jar file and execute it with './jcathy', that file can
+ be copied to /usr/bin for a simpler command-line execution.
+
+ To install jCathy move the tree folder
+  - jcathy.jar
+  - lib
+  - lib/hsaqldb.jar
+ wherever you want in the system. The actual database will be created in the
+ same folder with name jcathy.db.properties and jcathy.db.script.
+
+
+Uninstalling
+~~~~~~~~~~~~
+ Removes the files jcathy.jar, hsqldb.jar and, on GNU/Linux, the file jcathy.
+
+
+Note for Debian-based distributions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ The sources are provided with the "debian" subfolder, and the building of
+ jCathy in a Debian-based system can be done using the common Debian building
+ tools. First of all install the following packages:
+  - build-essential
+  - debhelper
+  - ant
+  - java-sdk
+  - devscripts
+  - quilt
+ you don't need to download HyperSQL because it is installed with the Debian
+ package libhsqldb-java.
+
+ To build jCathy execute (in the source folder)
+
+    quilt push -a
+    debuild binary
+    sudo dpkg -i ../jcathy_0.7.3-1_${arch}.deb
+
+ where ${arch} is your system architecture (i.e. i386, amd64, ...)
+
+
+Usage
+~~~~~
+ TODO

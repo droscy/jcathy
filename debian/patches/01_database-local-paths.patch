@@ -1,0 +1,27 @@
+Changed the LOCAL_PATH variable to save the database in the home of the current
+user and changed the path the copyright file using the one already present in
+Debian systems on /usr/share/common-licenses/GPL-2
+--- a/src/jdro/cathy/Cathy.java
++++ b/src/jdro/cathy/Cathy.java
+@@ -70,7 +70,7 @@
+ 	}
+ 	
+ 	/** the absolute path to the directory that contains the jar of this program */
+-	public static final String LOCAL_PATH = JAR_PATH.substring(0, JAR_PATH.lastIndexOf(File.separatorChar) + 1);
++	public static final String LOCAL_PATH = System.getProperty("user.home") + "/.jcathy/"; //$NON-NLS-1$
+ 	
+ 	
+ 	protected static GUI GUI;
+--- a/src/jdro/cathy/copyright/CopyInfo.java
++++ b/src/jdro/cathy/copyright/CopyInfo.java
+@@ -160,9 +160,7 @@
+ 		String txt = "";
+ 		try
+ 		{
+-			File copyingFile = new File(Cathy.LOCAL_PATH + "COPYING");
+-			if(!copyingFile.exists())
+-				copyingFile = new File(Cathy.LOCAL_PATH + "copying");
++			File copyingFile = new File("/usr/share/common-licenses/GPL-2");
+ 			FileReader copyingFileReader = new FileReader(copyingFile);
+ 			BufferedReader copying = new BufferedReader(copyingFileReader);
+ 			while(copying.ready())
