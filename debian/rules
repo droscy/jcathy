@@ -11,7 +11,7 @@ dh_auto_build_override:
 dh_auto_clean_override:
 	ant cleanall
 
-binary-indep:
+binary:
 	dh_testroot
 	dh_prep
 	dh_installdirs
@@ -21,7 +21,7 @@ binary-indep:
 	dh_installchangelogs
 	dh_installman
 	dh_installdebconf
-#	dh_installmenu
+	dh_installmenu
 #	dh_installmime
 #	dh_bugfiles
 	dh_lintian

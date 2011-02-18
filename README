@@ -13,9 +13,9 @@ jCathy README
 
 Description
 ~~~~~~~~~~~
- jCathy retrives the list of files and folders of a removable device
- (or a folder in the system) and stores them in a database, assigning a
- unique identifier (choosen by the user) to the volume. This database
+ jCathy creates a catalog of files and folders of removable devices
+ (or folder in the system) and stores them in a database, assigning a
+ unique identifier (choosen by the user) to that volume. This database
  can be searched by file/folder name to get the name of the volume which
  that file/folder belongs to, so users can easily locate theirs files.
 
@@ -26,6 +26,9 @@ ChangeLog
      o Added this README and this Changelog
      o Created debian subfolder to build and install this program in
        Debian-based systems
+     o Corrected mistakes in English words
+     o Created application icons and Desktop Entry for GNU/Linux desktop
+       environments
      o ...
 
  * 0.7.3 [????]
@@ -40,7 +43,7 @@ Requirements
 
  Running:
    * Java SE JRE v1.6 (http://www.oracle.com/technetwork/java/index.html)
-   * HyperSQL v1.8.10 (http://hsqldb.org/)
+   * HyperSQL v1.8.0 (http://hsqldb.org/)
 
 
 Building and Installing
@@ -90,11 +93,24 @@ Note for Debian-based distributions
 
     quilt push -a
     debuild binary
-    sudo dpkg -i ../jcathy_0.7.3-1_${arch}.deb
+    sudo dpkg -i ../jcathy_${version}_${arch}.deb
 
- where ${arch} is your system architecture (i.e. i386, amd64, ...)
+ where ${version} is the current version of jCathy and ${arch} is your system
+ architecture (i.e. i386, amd64, ...)
 
 
 Usage
 ~~~~~
- TODO
+ Add a Volume:
+   Open jCathy, go to the "Catalog" tab select the source root to be catalogued
+   by clicking the "Browse" button. Then choose a name for this volume and
+   click on "Add" button. Do this for each volume you want to store.
+   The "Ignore" field can be used to ignore some files/folder whose name
+   matches the pattern: these files/folder will not be idicized.
+
+ Search files/folders:
+   Open jCathy, go to the "Search" tab, enter the pattern to be searched (you
+   can use the asterisk * as a jolly character) and click on "Search". The list
+   of files/folders with the choosen name will be listed. Click on one of them
+   and go to the "Explore" tab, there you can navigate the whole tree for that
+   volume.

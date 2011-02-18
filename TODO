@@ -1,8 +1,10 @@
 TODOs
 ~~~~~
  - Fare in modo che solo la ricerca sia IgnoreCase, ma non la memorizzazione sul database!
- - Scrivere l'Usage nel README e nella manpage
- - deve essere scritta la mainpage del programma
+ - Scrivere l'Usage nella manpage
+ - decidere se cambiare licenza in GPLv3
+ - scrivere il changelog dopo aver deciso la versione finale
+ - deve essere scritta la mainpage della documentazione per Doxygen
  - inserire ordinamento delle colonne
  - creare import/export del database in formato XML
  - trovare icona per il pulsante Rename

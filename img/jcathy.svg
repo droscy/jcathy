@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
@@ -11,9 +12,8 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    height="760"
    id="svg1"
-   inkscape:version="0.45.1"
-   sodipodi:docbase="/home/simone/Documenti/WorkSpace/jDroCathy/img"
-   sodipodi:docname="jdrocathy.svg"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="jcathy.svg"
    sodipodi:version="0.32"
    width="760"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
@@ -21,17 +21,20 @@
    inkscape:export-filename="/home/simone/Documenti/WorkSpace/jDroCathy/img/cathy.png"
    inkscape:export-xdpi="11.903996"
    inkscape:export-ydpi="11.903996">
+  <title
+     id="title3027">jCathy</title>
   <metadata
      id="metadata3">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
-        <dc:title>jDroCathy</dc:title>
+        <dc:title>jCathy</dc:title>
         <dc:description>This image has been created using other Public-Domain images</dc:description>
         <dc:subject>
           <rdf:Bag>
             <rdf:li>cathy</rdf:li>
             <rdf:li>tracker</rdf:li>
+            <rdf:li>cataloguer</rdf:li>
           </rdf:Bag>
         </dc:subject>
         <dc:publisher>
@@ -55,29 +58,42 @@
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         <cc:license
-           rdf:resource="http://web.resource.org/cc/PublicDomain" />
+           rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
         <dc:language>it</dc:language>
         <dc:contributor>
           <cc:Agent>
             <dc:title>Open Clip Art Library: triangle
 Jean-Victor Balin: green arrow
-Architetto Francesco Rollandin: lente d'ingrandimento</dc:title>
+Architetto Francesco Rollandin: magnifier</dc:title>
           </cc:Agent>
         </dc:contributor>
       </cc:Work>
       <cc:License
-         rdf:about="http://web.resource.org/cc/PublicDomain">
+         rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
         <cc:permits
-           rdf:resource="http://web.resource.org/cc/Reproduction" />
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
         <cc:permits
-           rdf:resource="http://web.resource.org/cc/Distribution" />
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
         <cc:permits
-           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
       </cc:License>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs3">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 380 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="760 : 380 : 1"
+       inkscape:persp3d-origin="380 : 253.33333 : 1"
+       id="perspective221" />
     <radialGradient
        r="19.6875"
        fy="28.873655"
@@ -1358,7 +1374,7 @@ Architetto Francesco Rollandin: lente d'ingrandimento</dc:title>
      borderopacity="1.0"
      id="base"
      inkscape:current-layer="svg1"
-     inkscape:cx="380"
+     inkscape:cx="128.5544"
      inkscape:cy="380"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
@@ -1371,7 +1387,9 @@ Architetto Francesco Rollandin: lente d'ingrandimento</dc:title>
      width="760px"
      height="760px"
      showguides="true"
-     inkscape:guide-bbox="true" />
+     inkscape:guide-bbox="true"
+     showgrid="false"
+     inkscape:window-maximized="0" />
   <g
      id="layer1"
      inkscape:groupmode="layer"

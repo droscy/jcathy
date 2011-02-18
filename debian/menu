@@ -1,0 +1,7 @@
+?package(jcathy):\
+  needs="X11" \
+  section="Applications/File Management" \
+  title="jCathy" \
+  command="/usr/bin/jcathy" \
+  icon16x16="jcathy-16.png" \
+  icon32x32="jcathy-32.png"
