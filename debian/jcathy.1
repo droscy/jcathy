@@ -1,5 +1,5 @@
 .\"
-.\" +---------------------------------------------------------------------------
+.\" +--------------------------------------------------------------------------
 .\" |  "jCathy" v0.7.3+svn
 .\" |  (simple cataloguer for removable devices)
 .\" |  ========================================
@@ -9,29 +9,29 @@
 .\" |  ========================================
 .\" |  File created on 2011-02-16 18:08:43
 .\" |  Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
-.\" +---------------------------------------------------------------------------
+.\" +--------------------------------------------------------------------------
 .\" |  This file is jcathy.1, part of "jCathy"
 .\" |
-.\" |  This program is free software; you can redistribute it and/or modify
+.\" |  This program is free software: you can redistribute it and/or modify
 .\" |  it under the terms of the GNU General Public License as published by
-.\" |  the Free Software Foundation; either version 2 of the License, or
-.\" |  (at your option) any later version.
+.\" |  the Free Software Foundation, either version 3 of the License, or
+.\" |  (at your option) any later version with the additional exemption that
+.\" |  compiling, linking, and/or using OpenSSL is allowed.
 .\" |
 .\" |  This program is distributed in the hope that it will be useful,
 .\" |  but WITHOUT ANY WARRANTY; without even the implied warranty of
 .\" |  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 .\" |  GNU General Public License for more details.
 .\" |
-.\" |  You should have received a copy of the GNU General Public License along
-.\" |  with this program; if not, write to the Free Software Foundation, Inc.,
-.\" |  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-.\" +---------------------------------------------------------------------------
+.\" |  You should have received a copy of the GNU General Public License
+.\" |  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ +-----------------------------------------------------------------------------
 .\"
 .\" process with groff -man -Tascii jcathy.1
 .\" or with groff -t -e -mandoc -Tps jcathy.1 > jcathy.ps
 .\" or with nroff -man jcathy.1 | less
 
-.TH JCATHY 1 "2011-02-16" "GNU GPLv2" "Program Description"
+.TH JCATHY 1 "2011-02-16" "GNU GPLv3" "Program Description"
 .SH NAME
 jcathy \- simple cataloguer for removable devices
 .SH SYNOPSIS
@@ -44,16 +44,31 @@ unique identifier (choosen by the user) to the volume. This database
 can be searched by file/folder name to get the name of the volume which
 that file/folder belongs to, so users can easily locate theirs files.
 .SH USAGE
-To be written!!
+.IP - 2
+Add a Volume:
+.IP "" 4
+Open jCathy, go to the "Catalog" tab select the source root to be catalogued
+by clicking the "Browse" button. Then choose a name for this volume and
+click on "Add" button. Do this for each volume you want to store.
+The "Ignore" field can be used to ignore some files/folder whose name
+matches the pattern: these files/folder will not be indicized.
+.IP - 2
+Search files/folders:
+.IP "" 4
+Open jCathy, go to the "Search" tab, enter the pattern to be searched (you
+can use the asterisk * as a jolly character) and click on "Search". The list
+of files/folders with the choosen name will be listed. Click on one of them
+and go to the "Explore" tab, there you can navigate the whole tree for that
+volume.
 .SH COPYRIGHT
 Copyright (C) 2007-2011
 .MT simros85@gmail.com
 Simone Rossetto
 .ME
 
-This program is free software; you can redistribute it and/or modify
+This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
+the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,

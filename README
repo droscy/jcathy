@@ -3,9 +3,9 @@ jCathy README
    jCathy v0.7.3+svn
    Copyright (C) 2007-2011 Simone Rossetto
 
- This program is free software; you can redistribute it and/or modify
+ This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
+ the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY.
@@ -29,10 +29,11 @@ ChangeLog
      o Corrected mistakes in English words
      o Created application icons and Desktop Entry for GNU/Linux desktop
        environments
+     o Released under GPLv3
      o ...
 
  * 0.7.3 [????]
-     o Volumes' names can now be changed
+     o Volumes can now be renamed
 
 
 Requirements
@@ -106,7 +107,7 @@ Usage
    by clicking the "Browse" button. Then choose a name for this volume and
    click on "Add" button. Do this for each volume you want to store.
    The "Ignore" field can be used to ignore some files/folder whose name
-   matches the pattern: these files/folder will not be idicized.
+   matches the pattern: these files/folder will not be indicized.
 
  Search files/folders:
    Open jCathy, go to the "Search" tab, enter the pattern to be searched (you
