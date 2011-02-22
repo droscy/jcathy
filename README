@@ -76,6 +76,16 @@ Uninstalling
  Removes the files jcathy.jar, hsqldb.jar and, on GNU/Linux, the file jcathy.
 
 
+Source Packages
+~~~~~~~~~~~~~~~
+ To create the source package of jCathy, you can execute 'ant source'.
+ Two file will be created
+  - jcathy-${version}-src.tar.gz
+  - jcathy-${version}-debian.tar.gz
+ the first contains the only the main sources, the second contains the
+ debian subfolder required to build Debian packages.
+
+
 Note for Debian-based distributions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  The sources are provided with the "debian" subfolder, and the building of

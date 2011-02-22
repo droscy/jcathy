@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="jar" name="jCathy">
+<project basedir="." default="jar" name="jcathy">
 	<property name="version" value="0.7.3"/>
 	
 	<property name="lib" value="lib"/>
@@ -8,12 +8,41 @@
 	
 	<property name="hsqldb" value="${lib}/hsqldb.jar"/>
 	
-	<property name="jarname" value="jcathy.jar"/>
+	<property name="jarname" value="${ant.project.name}.jar"/>
+	<property name="tarname" value="${ant.project.name}-${version}-src.tar.gz"/>
+	<property name="tardebname" value="${ant.project.name}-${version}-debian.tar.gz"/>
 	
 	<path id="classpath">
 		<pathelement location="${src}"/>
 		<pathelement location="${hsqldb}"/>
 	</path>
+	
+
+	<!-- source package section -->
+	<target name="source" description="Creates the package of source files without binaries">
+		<tar destfile="${tarname}" compression="gzip">
+			<tarfileset dir="." prefix="${ant.project.name}-${version}">
+				<exclude name=".*"/>
+				<exclude name=".*/**"/>
+				<exclude name="debian/**"/>
+				<exclude name="${bin}/**"/>
+				<exclude name="${lib}/**"/>
+				<exclude name="Altro/**"/>
+				<exclude name="*.txt"/>
+				<exclude name="MANIFEST.MF"/>
+				<exclude name="*.jar"/>
+			</tarfileset>
+		</tar>
+		<tar destfile="${tardebname}" compression="gzip">
+			<tarfileset dir=".">
+				<include name="debian/**"/>
+				<exclude name="debian/rules"/>
+			</tarfileset>
+			<tarfileset dir="." filemode="755">
+				<include name="debian/rules"/>
+			</tarfileset>
+		</tar>
+	</target>
 	
 	
 	<!-- initialization section -->
@@ -29,21 +58,25 @@
 	<target name="clean" description="Cleans the source tree removing binaries">
 		<delete dir="${bin}"/>
 		<delete>
-			<fileset dir="." includes="${jarname}"/>
+			<fileset dir=".">
+				<include name="${jarname}"/>
+				<include name="${tarname}"/>
+				<include name="${tardebname}"/>
+			</fileset>
 		</delete>
 	</target>
 	<target depends="clean" name="cleanall" description="Same as 'clean'"/>
 	
 	
 	<!-- building section -->
-	<target name="build" depends="init" description="Builds jCathy">
+	<target name="build" depends="init" description="Builds ${ant.project.name}">
 		<javac debug="false" destdir="${bin}" target="1.6" includeantruntime="false">
 			<src path="${src}"/>
 			<classpath refid="classpath"/>
 		</javac>
 	</target>
 
-	<target name="jar" depends="build" description="Creates jcathy.jar file">
+	<target name="jar" depends="build" description="Creates ${ant.project.name}.jar file">
 		<jar jarfile="${jarname}" basedir="${bin}">
 			<manifest>
 				<attribute name="Main-Class" value="jdro.cathy.Cathy"/>
