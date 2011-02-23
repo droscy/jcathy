@@ -149,7 +149,7 @@ public class CopyInfo extends JDialog
 			{
 				copyLabel[0] = new JLabel(programName);
 				copyLabel[1] = new JLabel("Copyright \u00A9 " + year + " Simone Rossetto <simros85@gmail.com>");
-				copyLabel[2] = new JLabel("GNU General Public License v2");
+				copyLabel[2] = new JLabel("GNU General Public License v3");
 			}
 			for(int i=0;i<3;i++)
 				copyPanel.add(copyLabel[i]);

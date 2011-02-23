@@ -1,5 +1,5 @@
 jCathy README
-~~~~~~~~~~~~
+~~~~~~~~~~~~~
    jCathy v0.7.3+svn
    Copyright (C) 2007-2011 Simone Rossetto
 
@@ -32,7 +32,7 @@ ChangeLog
      o Released under GPLv3
      o ...
 
- * 0.7.3 [????]
+ * 0.7.3 [2010-08-15 08:46:23 GMT]
      o Volumes can now be renamed
 
 
@@ -66,7 +66,7 @@ Building and Installing
  To install jCathy move the tree folder
   - jcathy.jar
   - lib
-  - lib/hsaqldb.jar
+  - lib/hsqldb.jar
  wherever you want in the system. The actual database will be created in the
  same folder with name jcathy.db.properties and jcathy.db.script.
 
