@@ -3,7 +3,7 @@ The database HSQLDB is located at /usr/share/java/hsqldb.jar in Debian system
 +++ b/build.xml
 @@ -2,7 +2,7 @@
  <project basedir="." default="jar" name="jcathy">
- 	<property name="version" value="0.7.3"/>
+ 	<property name="version" value="0.7.4"/>
  	
 -	<property name="lib" value="lib"/>
 +	<property name="lib" value="/usr/share/java"/>
