@@ -1,6 +1,6 @@
 /*
  +-----------------------------------------------------------------------------
- |  "jCathy" v0.7.3+svn
+ |  "jCathy" v0.7.4
  |  (simple cataloguer for removable devices)
  |  ========================================
  |  by Simone Rossetto
@@ -12,19 +12,19 @@
  +-----------------------------------------------------------------------------
  |  This file is Cathy.java, part of "jCathy"
  |
- |	This program is free software: you can redistribute it and/or modify
- |	it under the terms of the GNU General Public License as published by
- |	the Free Software Foundation, either version 3 of the License, or
- |	(at your option) any later version with the additional exemption that
- |	compiling, linking, and/or using OpenSSL is allowed.
+ |  This program is free software: you can redistribute it and/or modify
+ |  it under the terms of the GNU General Public License as published by
+ |  the Free Software Foundation, either version 3 of the License, or
+ |  (at your option) any later version with the additional exemption that
+ |  compiling, linking, and/or using OpenSSL is allowed.
  |
- |	This program is distributed in the hope that it will be useful,
- |	but WITHOUT ANY WARRANTY; without even the implied warranty of
- |	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- |	GNU General Public License for more details.
+ |  This program is distributed in the hope that it will be useful,
+ |  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ |  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ |  GNU General Public License for more details.
  |
- |	You should have received a copy of the GNU General Public License
- |	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ |  You should have received a copy of the GNU General Public License
+ |  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  +-----------------------------------------------------------------------------
  */
 package jdro.cathy;
@@ -44,12 +44,12 @@ import jdro.cathy.resources.Messages;
  * TODO Fare in modo che solo la ricerca sia IgnoreCase, ma non la memorizzazione sul database!
  * TODO Scrivere l'Usage nel README
  * @author Simone Rossetto
- * @version 0.7.3+svn
+ * @version 0.7.4
  */
 public class Cathy
 {
 	public static final String NAME = "jCathy"; //$NON-NLS-1$
-	public static final String VERSION = "v0.7.3+svn"; //$NON-NLS-1$
+	public static final String VERSION = "v0.7.4"; //$NON-NLS-1$
 	public static final String YEAR = "2007-2011"; //$NON-NLS-1$
 	public static final String ICON_PATH = "jdro/cathy/images/";
 	public static final String ICON_FILENAME = ICON_PATH + "jcathy.png"; //$NON-NLS-1$
