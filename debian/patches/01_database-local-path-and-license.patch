@@ -1,9 +1,12 @@
-Changed the LOCAL_PATH variable to save the database in the home of the current
-user and changed the path the copyright file using the one already present in
-Debian systems on /usr/share/common-licenses/GPL-2
+Description: Changed the LOCAL_PATH variable to save the database in the home of the current
+ user and changed the path the copyright file using the one already present in
+ Debian systems on /usr/share/common-licenses/GPL-3
+Forwarded: not-needed
+Author: Simone Rossetto <simros85@gmail.com>
+Last-Update: 2014-04-20
 --- a/src/jdro/cathy/Cathy.java
 +++ b/src/jdro/cathy/Cathy.java
-@@ -72,7 +72,7 @@
+@@ -71,7 +71,7 @@
  	}
  	
  	/** the absolute path to the directory that contains the jar of this program */

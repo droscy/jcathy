@@ -3,6 +3,7 @@ Type=Application
 Name=jCathy
 Comment=Simple cataloguer for removable devices
 Comment[it]=Semplice catalogatore per supporti removibili
+Keywords=catalog;cathy;removable;device;
 GenericName=jCathy
 Icon=jcathy
 Exec=/usr/bin/jcathy

@@ -1,4 +1,7 @@
-Inserted the full path to jcathy.jar file in Debian systems
+Description: Inserted the full path to jcathy.jar file in Debian systems
+Forwarded: not-needed
+Author: Simone Rossetto <simros85@gmail.com>
+Last-Update: 2014-04-20
 --- a/jcathy
 +++ b/jcathy
 @@ -41,12 +41,7 @@

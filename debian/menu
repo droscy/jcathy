@@ -3,5 +3,5 @@
   section="Applications/File Management" \
   title="jCathy" \
   command="/usr/bin/jcathy" \
-  icon16x16="jcathy-16.xpm" \
-  icon32x32="jcathy-32.xpm"
+  icon16x16="/usr/share/pixmaps/jcathy-16.xpm" \
+  icon32x32="/usr/share/pixmaps/jcathy-32.xpm"

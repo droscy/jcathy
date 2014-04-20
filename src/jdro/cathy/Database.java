@@ -47,13 +47,11 @@ import java.util.Vector;
  * @author Simone Rossetto
  * @version 2.1.3
  * 
- * @todo aggiornare tutte le query alla sintassi della versione 2.0 di HSQLDB
- * 
- * La conversione del DB può essere fatta con
+ * La conversione del DB puo' essere fatta con
  *  1. open the database with the jar that created it and perform
  *       - SET SCRIPTFORMAT TEXT
  *       - SHUTDOWN SCRIPT
- *  2. open the database with the HyperSQL 2.0 jar
+ *  2. open the database with the HyperSQL >= 2.2.0 jar
  *  3. perform
  *       - SET FILES SCRIPT FORMAT COMPRESSED
  *       - SHUTDOWN COMPACT
