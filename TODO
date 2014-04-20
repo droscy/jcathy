@@ -1,12 +1,10 @@
 TODOs
 ~~~~~
- - Fare in modo che solo la ricerca sia IgnoreCase, ma non la memorizzazione sul database!
  - scrivere il changelog dopo aver deciso la versione finale
  - deve essere scritta la mainpage della documentazione per Doxygen
  - inserire ordinamento delle colonne
  - creare import/export del database in formato XML
  - trovare icona per il pulsante Rename
- - aggiornare i comandi di apertura del db alla versione 2.0 di HSQLDB
 
 
 Debian

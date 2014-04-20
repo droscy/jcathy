@@ -1,7 +1,7 @@
 jCathy README
 ~~~~~~~~~~~~~
-   jCathy v0.7.4
-   Copyright (C) 2007-2011 Simone Rossetto
+   jCathy v0.7.5
+   Copyright (C) 2007-2014 Simone Rossetto
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,10 @@ Description
 
 ChangeLog
 ~~~~~~~~~
- * 0.7.4 (current release)
+ * 0.7.5 (current release)
+     o switched to HSQLDB v2.x
+ 
+ * 0.7.4 [2011-02-24 14:54:34 GMT]
      o Added this README and this Changelog
      o Created debian subfolder to build and install this program in
        Debian-based systems
@@ -43,7 +46,7 @@ Requirements
 
  Running:
    * Java SE JRE v1.6 (http://www.oracle.com/technetwork/java/index.html)
-   * HyperSQL v1.8.0 (http://hsqldb.org/)
+   * HyperSQL v2.3.2 (http://hsqldb.org/)
 
 
 Building and Installing

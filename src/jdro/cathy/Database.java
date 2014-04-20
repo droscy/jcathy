@@ -1,10 +1,10 @@
 /*
  +-----------------------------------------------------------------------------
- |  "jCathy" v0.7.4
+ |  "jCathy" v0.7.5
  |  (simple cataloguer for removable devices)
  |  ========================================
  |  by Simone Rossetto
- |  Copyright (C) 2007-2011 Simone Rossetto
+ |  Copyright (C) 2007-2014 Simone Rossetto
  |  E-Mail: simros85@gmail.com
  |  ========================================
  |  File created on 06/nov/07 19:44:09
@@ -45,7 +45,7 @@ import java.util.Vector;
  * This class is adapted for jCathy so that the result of a normal query
  * will return a model needed for the creation of a JTable
  * @author Simone Rossetto
- * @version 2.1.2
+ * @version 2.1.3
  * 
  * @todo aggiornare tutte le query alla sintassi della versione 2.0 di HSQLDB
  * 
@@ -56,7 +56,12 @@ import java.util.Vector;
  *  2. open the database with the HyperSQL 2.0 jar
  *  3. perform
  *       - SET FILES SCRIPT FORMAT COMPRESSED
- *       - SHUTDOWN COMPAC
+ *       - SHUTDOWN COMPACT
+ * 
+ * Per recuperare tutte le query eseguire
+ *  1. java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing
+ *  2. SET FILES SCRIPT FORMAT TEXT
+ *  3. SHUTDOWN SCRIPT
  */
 public class Database
 {
@@ -117,14 +122,15 @@ public class Database
 		try
 		{	
 			Class.forName("org.hsqldb.jdbcDriver");
-			connection = DriverManager.getConnection("jdbc:hsqldb:file:"+dbFileName, "sa", "");
+			connection = DriverManager.getConnection("jdbc:hsqldb:file:"+dbFileName, "SA", "");
 			connected = true;
 			
 			executeUpdate
 			(
-				"SET WRITE_DELAY FALSE;"+
-				"SET LOGSIZE 10;"+
-				"SET SCRIPTFORMAT COMPRESSED" // TEXT, COMPRESSED, BINARY
+				//"SET DATABASE DEFAULT TABLE TYPE CACHED;" +
+				"SET FILES WRITE DELAY FALSE;" +
+				"SET FILES LOG SIZE 10;" +
+				"SET FILES SCRIPT FORMAT COMPRESSED;" // TEXT, COMPRESSED
 			);
 			
 			
@@ -140,12 +146,8 @@ public class Database
 			
 			if(!vect.contains(Cathy.TABLEsettings.toUpperCase()))
 			{
-				executeUpdate
-				(
-					"SET IGNORECASE TRUE;" +
-					"CREATE TABLE " + Cathy.TABLEsettings + "(fk_created BOOLEAN NOT NULL);" +
-					"INSERT INTO " + Cathy.TABLEsettings + "(fk_created) VALUES (FALSE);"
-				);
+				executeUpdate("CREATE TABLE " + Cathy.TABLEsettings + "(fk_created BOOLEAN NOT NULL);");
+				executeUpdate("INSERT INTO " + Cathy.TABLEsettings + "(fk_created) VALUES (FALSE);");
 			}
 			
 			selectSettings();
@@ -154,10 +156,9 @@ public class Database
 			{
 				executeUpdate
 				(
-					"SET IGNORECASE TRUE;" +
 					"CREATE TABLE " + Cathy.TABLEvolume +
 					"(" +
-						"name VARCHAR NOT NULL PRIMARY KEY," +
+						"name VARCHAR(255) NOT NULL PRIMARY KEY," +
 						"size BIGINT NOT NULL," +
 						"dirs INTEGER NOT NULL," +
 						"files INTEGER NOT NULL," +
@@ -171,12 +172,11 @@ public class Database
 			{
 				executeUpdate
 				(
-					"SET IGNORECASE TRUE;"+
-					"CREATE TABLE " + Cathy.TABLEdirectories +
+					"CREATE CACHED TABLE " + Cathy.TABLEdirectories +
 					"(" +
 						"id INTEGER NOT NULL," +
-						"volume VARCHAR NOT NULL," +
-						"name VARCHAR NOT NULL," +
+						"volume VARCHAR(255) NOT NULL," +
+						"name VARCHAR(255) NOT NULL," +
 						"parent INTEGER NOT NULL," +
 						"size BIGINT NOT NULL,"+
 						"date DATE NOT NULL," +
@@ -205,13 +205,11 @@ public class Database
 			{
 				executeUpdate
 				(
-					// FIXME come eseguire una ricerca IGNORECASE senza pero' avere anche l'ingresso IGNORECASE!!!
-					"SET IGNORECASE TRUE;" +
-					"CREATE TABLE " + Cathy.TABLEfiles +
+					"CREATE CACHED TABLE " + Cathy.TABLEfiles +
 					"(" +
-						"volume VARCHAR NOT NULL," +
+						"volume VARCHAR(255) NOT NULL," +
 						"directory INTEGER NOT NULL," +
-						"name VARCHAR NOT NULL," +
+						"name VARCHAR(255) NOT NULL," +
 						"date DATE NOT NULL," +
 						"size BIGINT NOT NULL," +
 						"path LONGVARCHAR NOT NULL," +
@@ -235,12 +233,7 @@ public class Database
 			
 			if(!vect.contains(Cathy.TABLEignore.toUpperCase()))
 			{
-				executeUpdate
-				(
-					"SET IGNORECASE TRUE;"+
-					"CREATE TABLE "+Cathy.TABLEignore+
-					"(pattern VARCHAR NOT NULL);"
-				);
+				executeUpdate("CREATE TABLE " + Cathy.TABLEignore + "(pattern VARCHAR(255) NOT NULL);");
 			}
 			
 			executeUpdate("UPDATE " + Cathy.TABLEsettings + " SET fk_created=TRUE;");
@@ -258,7 +251,7 @@ public class Database
 			(
 				"SELECT * " +
 				"FROM "+Cathy.TABLEdirectories+" "+
-				"WHERE name LIKE ? AND id!=0 "+
+				"WHERE UPPER(name) LIKE UPPER(?) AND id!=0 "+
 				"ORDER BY name ASC"
 			);
 			
@@ -267,7 +260,7 @@ public class Database
 			(
 				"SELECT * " +
 				"FROM "+Cathy.TABLEfiles+" "+
-				"WHERE name LIKE ? "+
+				"WHERE UPPER(name) LIKE UPPER(?) "+
 				"ORDER BY name ASC"
 			);
 			

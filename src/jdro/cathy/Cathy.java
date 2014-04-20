@@ -1,10 +1,10 @@
 /*
  +-----------------------------------------------------------------------------
- |  "jCathy" v0.7.4
+ |  "jCathy" v0.7.5
  |  (simple cataloguer for removable devices)
  |  ========================================
  |  by Simone Rossetto
- |  Copyright (C) 2007-2011 Simone Rossetto
+ |  Copyright (C) 2007-2014 Simone Rossetto
  |  E-Mail: simros85@gmail.com
  |  ========================================
  |  File created on 04/nov/07 16:51:26
@@ -41,16 +41,15 @@ import jdro.cathy.resources.Messages;
  * TODO inserire ordinamento delle colonne
  * TODO creare import/export del database in formato XML
  * TODO trovare icona per il pulsante Rename
- * TODO Fare in modo che solo la ricerca sia IgnoreCase, ma non la memorizzazione sul database!
  * TODO Scrivere l'Usage nel README
  * @author Simone Rossetto
- * @version 0.7.4
+ * @version 0.7.5
  */
 public class Cathy
 {
 	public static final String NAME = "jCathy"; //$NON-NLS-1$
-	public static final String VERSION = "v0.7.4"; //$NON-NLS-1$
-	public static final String YEAR = "2007-2011"; //$NON-NLS-1$
+	public static final String VERSION = "v0.7.5"; //$NON-NLS-1$
+	public static final String YEAR = "2007-2014"; //$NON-NLS-1$
 	public static final String ICON_PATH = "jdro/cathy/images/";
 	public static final String ICON_FILENAME = ICON_PATH + "jcathy.png"; //$NON-NLS-1$
 	

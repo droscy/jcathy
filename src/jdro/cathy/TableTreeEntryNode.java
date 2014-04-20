@@ -1,10 +1,10 @@
 /*
  +-----------------------------------------------------------------------------
- |  "jCathy" v0.7.4
+ |  "jCathy" v0.7.5
  |  (simple cataloguer for removable devices)
  |  ========================================
  |  by Simone Rossetto
- |  Copyright (C) 2007-2011 Simone Rossetto
+ |  Copyright (C) 2007-2014 Simone Rossetto
  |  E-Mail: simros85@gmail.com
  |  ========================================
  |  File created on 12/nov/07 14:31:29
