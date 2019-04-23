@@ -1,14 +1,14 @@
 /*
  +-----------------------------------------------------------------------------
- |  "jCathy" v0.7.5
+ |  "jCathy" v0.7.6
  |  (simple cataloguer for removable devices)
  |  ========================================
  |  by Simone Rossetto
- |  Copyright (C) 2007-2014 Simone Rossetto
+ |  Copyright (C) 2007-2019 Simone Rossetto
  |  E-Mail: simros85@gmail.com
  |  ========================================
  |  File created on 04/nov/07 16:51:26
- |  Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
+ |  License Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
  +-----------------------------------------------------------------------------
  |  This file is Cathy.java, part of "jCathy"
  |
@@ -37,19 +37,15 @@ import jdro.cathy.resources.Messages;
 
 
 /**
- * @mainpage TODO deve essere scritta la mainpage del programma
- * TODO inserire ordinamento delle colonne
- * TODO creare import/export del database in formato XML
- * TODO trovare icona per il pulsante Rename
- * TODO Scrivere l'Usage nel README
+ * @mainpage TODO to be written
  * @author Simone Rossetto
- * @version 0.7.5
+ * @version 0.7.6
  */
 public class Cathy
 {
 	public static final String NAME = "jCathy"; //$NON-NLS-1$
-	public static final String VERSION = "v0.7.5"; //$NON-NLS-1$
-	public static final String YEAR = "2007-2014"; //$NON-NLS-1$
+	public static final String VERSION = "v0.7.6"; //$NON-NLS-1$
+	public static final String YEAR = "2007-2019"; //$NON-NLS-1$
 	public static final String ICON_PATH = "jdro/cathy/images/";
 	public static final String ICON_FILENAME = ICON_PATH + "jcathy.png"; //$NON-NLS-1$
 	

@@ -2,8 +2,8 @@
 Catalog for files and folders of removable devices.
 
 ## License
-jCathy v0.7.5+dev<br/>
-Copyright (C) 2007-2014 Simone Rossetto <simros85@gmail.com><br/>
+jCathy v0.7.6<br/>
+Copyright (C) 2007-2019 Simone Rossetto <simros85@gmail.com><br/>
 GNU General Public License v3
 
     jCathy is free software: you can redistribute it and/or modify
@@ -97,7 +97,7 @@ dpkg -i jcathy_{version}_all.deb
   volume.
 
 ## Changelog
-* v0.7.6 (under development)
+* v0.7.6 [2019-04-23]
 
   - versioning system migrated to git
   - separate branch for `debian/` folder to use git-buildpackage
