@@ -1,20 +1,23 @@
-Description: Inserted the full path to jcathy.jar file in Debian systems
+From: Simone Rossetto <simros85@gmail.com>
+Date: Tue, 23 Apr 2019 19:53:55 +0200
+Subject: Inserted the full path to jcathy.jar file in Debian systems
+
 Forwarded: not-needed
-Author: Simone Rossetto <simros85@gmail.com>
 Last-Update: 2014-04-20
+---
+ jcathy | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/jcathy b/jcathy
+index c372212..9f15877 100755
 --- a/jcathy
 +++ b/jcathy
-@@ -41,12 +41,7 @@
- 
- if [[ $VERSION > 1.6 || $VERSION = 1.6 ]]; then
- 	echo "jCathy is loading..."
--
--	# Edit to following line prepending to jcathy.jar the full path
--	# where you have installed that file. A common path in Debian
--	# system can be /usr/share/java/ and the whole command will become
--	# $JAVA -jar /usr/share/java/jcathy.jar
+@@ -25,7 +25,7 @@ if [ "$MAJOR_VERSION" -gt 1 ] || ["$MAJOR_VERSION" -eq 1 -a "$MINOR_VERSION" -ge
+ 	# where you have installed that file. A common path in Debian
+ 	# system can be /usr/share/java/ and the whole command will become
+ 	# $JAVA -jar /usr/share/java/jcathy.jar
 -	$JAVA -jar jcathy.jar
 +	$JAVA -jar /usr/share/java/jcathy.jar
+   exit $?
  else
  	echo -e "jCathy needs java version >= 1.6 (your version is $FULL_VERSION)"
- 	exit 1

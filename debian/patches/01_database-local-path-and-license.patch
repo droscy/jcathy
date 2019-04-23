@@ -1,12 +1,21 @@
-Description: Changed the LOCAL_PATH variable to save the database in the home of the current
- user and changed the path the copyright file using the one already present in
- Debian systems on /usr/share/common-licenses/GPL-3
+From: Simone Rossetto <simros85@gmail.com>
+Date: Tue, 23 Apr 2019 19:53:55 +0200
+Subject: Changed the LOCAL_PATH variable to save the database in the home of
+ the current user and changed the path of the copyright file using the one
+ already present in Debian systems on /usr/share/common-licenses/GPL-3
+
 Forwarded: not-needed
-Author: Simone Rossetto <simros85@gmail.com>
 Last-Update: 2014-04-20
+---
+ src/jdro/cathy/Cathy.java              | 2 +-
+ src/jdro/cathy/copyright/CopyInfo.java | 4 +---
+ 2 files changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/src/jdro/cathy/Cathy.java b/src/jdro/cathy/Cathy.java
+index ff9ca10..d90e054 100644
 --- a/src/jdro/cathy/Cathy.java
 +++ b/src/jdro/cathy/Cathy.java
-@@ -71,7 +71,7 @@
+@@ -67,7 +67,7 @@ public class Cathy
  	}
  	
  	/** the absolute path to the directory that contains the jar of this program */
@@ -15,9 +24,11 @@ Last-Update: 2014-04-20
  	
  	
  	protected static GUI GUI;
+diff --git a/src/jdro/cathy/copyright/CopyInfo.java b/src/jdro/cathy/copyright/CopyInfo.java
+index 000d32e..91b50f9 100644
 --- a/src/jdro/cathy/copyright/CopyInfo.java
 +++ b/src/jdro/cathy/copyright/CopyInfo.java
-@@ -160,9 +160,7 @@
+@@ -160,9 +160,7 @@ public class CopyInfo extends JDialog
  		String txt = "";
  		try
  		{
