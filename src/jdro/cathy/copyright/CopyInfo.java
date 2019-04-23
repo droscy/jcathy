@@ -1,14 +1,14 @@
 /*
  +-----------------------------------------------------------------------------
- |  "jCathy" v0.7.5
+ |  "jCathy" v0.7.6
  |  (simple cataloguer for removable devices)
  |  ========================================
  |  by Simone Rossetto
- |  Copyright (C) 2007-2014 Simone Rossetto
+ |  Copyright (C) 2007-2019 Simone Rossetto
  |  E-Mail: simros85@gmail.com
  |  ========================================
  |  File created on 14/nov/07 14:16:06
- |  Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
+ |  License Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
  +-----------------------------------------------------------------------------
  |  This file is CopyInfo.java, part of "jCathy"
  |

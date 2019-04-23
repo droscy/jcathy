@@ -1,14 +1,14 @@
 /*
  +-----------------------------------------------------------------------------
- |  "jCathy" v0.7.5
+ |  "jCathy" v0.7.6
  |  (simple cataloguer for removable devices)
  |  ========================================
  |  by Simone Rossetto
- |  Copyright (C) 2007-2014 Simone Rossetto
+ |  Copyright (C) 2007-2019 Simone Rossetto
  |  E-Mail: simros85@gmail.com
  |  ========================================
  |  File created on 08/nov/07 15:09:34
- |  Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
+ |  License Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
  +-----------------------------------------------------------------------------
  |  This file is CathyTableModel.java, part of "jCathy"
  |
