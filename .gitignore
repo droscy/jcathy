@@ -1,0 +1,17 @@
+/*.log
+/*_
+/*.or*
+/Altro
+/jcathy.jar
+/jcathy-v*.jar
+/bin
+/*.class
+/lib
+/hsqldb.jar
+/MANIFEST.MF
+/.pc
+/hsqldb_lic.txt
+/hypersonic_lic.txt
+.classpath
+.project
+*.html
