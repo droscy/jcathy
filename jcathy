@@ -1,32 +1,9 @@
 #!/bin/bash 
-# +----------------------------------------------------------------------------
-# |  "jCathy" v0.7.5
-# |  (simple cataloguer for removable devices)
-# |  ========================================
-# |  by Simone Rossetto
-# |  Copyright (C) 2007-2014 Simone Rossetto
-# |  E-Mail: simros85@gmail.com
-# |  ========================================
-# |  File created on 2011-02-16 17:05:04
-# |  Licence Info: GNU GENERAL PUBLIC LICENSE (check file COPYING)
-# +----------------------------------------------------------------------------
-# |  This file is jcathy, part of "jCathy"
-# |
-# |  This program is free software: you can redistribute it and/or modify
-# |  it under the terms of the GNU General Public License as published by
-# |  the Free Software Foundation, either version 3 of the License, or
-# |  (at your option) any later version with the additional exemption that
-# |  compiling, linking, and/or using OpenSSL is allowed.
-# |
-# |  This program is distributed in the hope that it will be useful,
-# |  but WITHOUT ANY WARRANTY; without even the implied warranty of
-# |  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# |  GNU General Public License for more details.
-# |
-# |  You should have received a copy of the GNU General Public License
-# |  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# +----------------------------------------------------------------------------
+#
+# Check existence and version of Java Runtime then execute jCathy.
+#
 
+# check java existence
 JAVA=$(which java)
 
 if [ ! -x "$JAVA" ]; then
@@ -34,12 +11,14 @@ if [ ! -x "$JAVA" ]; then
 	exit 2
 fi
 
+# get java version
 VERSION=$($JAVA -version 2>&1)
 FULL_VERSION=$(expr match "$VERSION" '.*"\([0-9]*\.[0-9]*\.[0-9_]*\)"')
-VERSION=$(expr match "$VERSION" '.*"\([0-9]*\.[0-9]*\)\.[0-9_]*"')
+MAJOR_VERSION=$(expr match "$VERSION" '.*"\([0-9]*\)\.[0-9]*\.[0-9_]*"')
+MINOR_VERSION=$(expr match "$VERSION" '.*"[0-9]*\.\([0-9]*\)\.[0-9_]*"')
 
-
-if [[ $VERSION > 1.6 || $VERSION = 1.6 ]]; then
+# check java version
+if [ "$MAJOR_VERSION" -gt 1 ] || ["$MAJOR_VERSION" -eq 1 -a "$MINOR_VERSION" -ge 6 ]; then
 	echo "jCathy is loading..."
 
 	# Edit to following line prepending to jcathy.jar the full path
@@ -47,8 +26,8 @@ if [[ $VERSION > 1.6 || $VERSION = 1.6 ]]; then
 	# system can be /usr/share/java/ and the whole command will become
 	# $JAVA -jar /usr/share/java/jcathy.jar
 	$JAVA -jar jcathy.jar
+  exit $?
 else
 	echo -e "jCathy needs java version >= 1.6 (your version is $FULL_VERSION)"
 	exit 1
 fi
-

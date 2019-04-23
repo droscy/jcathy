@@ -10,7 +10,6 @@
 	
 	<property name="jarname" value="${ant.project.name}.jar"/>
 	<property name="tarname" value="${ant.project.name}-${version}-src.tar.gz"/>
-	<property name="tardebname" value="${ant.project.name}-${version}-debian.tar.gz"/>
 	
 	<path id="classpath">
 		<pathelement location="${src}"/>
@@ -19,7 +18,7 @@
 	
 
 	<!-- source package section -->
-	<target name="source" description="Creates the package of source files without binaries">
+	<target name="source" description="Create the package of source files without binaries">
 		<tar destfile="${tarname}" compression="gzip">
 			<tarfileset dir="." prefix="${ant.project.name}-${version}">
 				<exclude name=".*"/>
@@ -29,24 +28,16 @@
 				<exclude name="${lib}/**"/>
 				<exclude name="Altro/**"/>
 				<exclude name="*.txt"/>
+				<exclude name="*.html"/>
 				<exclude name="MANIFEST.MF"/>
 				<exclude name="*.jar"/>
-			</tarfileset>
-		</tar>
-		<tar destfile="${tardebname}" compression="gzip">
-			<tarfileset dir=".">
-				<include name="debian/**"/>
-				<exclude name="debian/rules"/>
-			</tarfileset>
-			<tarfileset dir="." filemode="755">
-				<include name="debian/rules"/>
 			</tarfileset>
 		</tar>
 	</target>
 	
 	
 	<!-- initialization section -->
-	<target name="init" description="Creates the required output folders and copies non-java needed files">
+	<target name="init" description="Create the required output folders and copy therr non-java needed files">
 		<mkdir dir="${bin}"/>
 		<copy includeemptydirs="false" todir="${bin}">
 			<fileset dir="${src}" excludes="**/*.launch **/*.java **/*.svg **/*.form"/>
@@ -55,13 +46,12 @@
 	
 	
 	<!-- cleaning section -->
-	<target name="clean" description="Cleans the source tree removing binaries">
+	<target name="clean" description="Clean the source tree removing binaries">
 		<delete dir="${bin}"/>
 		<delete>
 			<fileset dir=".">
 				<include name="${jarname}"/>
 				<include name="${tarname}"/>
-				<include name="${tardebname}"/>
 			</fileset>
 		</delete>
 	</target>
@@ -69,14 +59,14 @@
 	
 	
 	<!-- building section -->
-	<target name="build" depends="init" description="Builds ${ant.project.name}">
+	<target name="build" depends="init" description="Build ${ant.project.name}">
 		<javac debug="false" destdir="${bin}" target="1.6" includeantruntime="false">
 			<src path="${src}"/>
 			<classpath refid="classpath"/>
 		</javac>
 	</target>
 
-	<target name="jar" depends="build" description="Creates ${ant.project.name}.jar file">
+	<target name="jar" depends="build" description="Create ${ant.project.name}.jar file">
 		<jar jarfile="${jarname}" basedir="${bin}">
 			<manifest>
 				<attribute name="Main-Class" value="jdro.cathy.Cathy"/>

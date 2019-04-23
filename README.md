@@ -39,7 +39,7 @@ After a successfull building, create the subfolder `lib` in the same folder
 of `jcathy.jar` and copy in there the file `hsqldb.jar` downloaded from the
 [HyperSQL v2.3.2](http://hsqldb.org/) website. On Windows you can simply
 double-click on `jcathy.jar` to start the program, on GNU/Linux edit
-the file `jcathy` on line 49, set the path to your `jcathy.jar` file and
+the file `jcathy` on line 28, set the path to your `jcathy.jar` file and
 execute it with `./jcathy`, that file can be copied to `/usr/bin` for a
 simpler command-line execution.
 
