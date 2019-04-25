@@ -2,15 +2,15 @@ Source: jcathy
 Section: utils
 Priority: optional
 Maintainer: Simone Rossetto <simros85@gmail.com>
-Build-Depends: debhelper (>= 7.0.50~), ant, default-jdk (>= 1:1.6) | java-sdk | sun-java6-jdk
-Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 7~), ant, default-jdk (>= 1:1.6) | java-sdk
+Standards-Version: 4.3.0
 Homepage: https://github.com/droscy/jcathy
 Vcs-Git: https://github.com/droscy/jcathy.git
 Vcs-Browser: https://github.com/droscy/jcathy
 
 Package: jcathy
 Architecture: all
-Depends: default-jre (>= 1:1.6) | java-runtime | sun-java6-jre, libhsqldb-java (>= 2.2.0), ${misc:Depends}
+Depends: default-jre (>= 1:1.6) | java-runtime, libhsqldb-java (>= 2.2.0), ${misc:Depends}
 Description: Simple cataloguer for removable devices
  This program creates a catalog of files and folders of removable devices
  (or folder in the system) and stores them in a database, assigning a
