@@ -1,12 +1,12 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: jcathy
 Source: https://github.com/droscy/jcathy
-Copyright: 2007-2019 Simone Rossetto <simros85@gmail.com>
+Copyright: 2007-2025 Simone Rossetto <simros85@gmail.com>
 License: GPL-3.0+
 
 
 Files: *
-Copyright: 2007-2019 Simone Rossetto <simros85@gmail.com>
+Copyright: 2007-2025 Simone Rossetto <simros85@gmail.com>
 License: GPL-3.0+
 
 Files: debian/*
@@ -14,7 +14,7 @@ Copyright: 2011-2019 Simone Rossetto <simros85@gmail.com>
 License: GPL-3.0+
 
 Files: img/jcathy.svg
-Copyright: 2007-2019 Simone Rossetto <simros85@gmail.com>
+Copyright: 2007-2025 Simone Rossetto <simros85@gmail.com>
 License: CC-BY-SA-3.0
 
 Files: img/add.svg img/error.svg img/warning.svg img/success.svg

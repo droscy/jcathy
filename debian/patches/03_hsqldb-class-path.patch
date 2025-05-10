@@ -9,20 +9,18 @@ Last-Update: 2014-04-20
  build.xml | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/build.xml b/build.xml
-index 87c11ba..c911024 100644
 --- a/build.xml
 +++ b/build.xml
 @@ -2,7 +2,7 @@
  <project basedir="." default="jar" name="jcathy">
- 	<property name="version" value="0.7.6"/>
+ 	<property name="version" value="0.7.7"/>
  	
 -	<property name="lib" value="lib"/>
 +	<property name="lib" value="/usr/share/java"/>
  	<property name="src" value="src"/>
  	<property name="bin" value="bin"/>
  	
-@@ -75,6 +75,5 @@
+@@ -76,6 +76,5 @@
  		</jar>
  		<echo message="Completed!"/>
  		<echo message="${ant.project.name} has been built and packaged into jar file"/>
