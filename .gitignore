@@ -4,6 +4,7 @@
 /Altro
 /jcathy.jar
 /jcathy-v*.jar
+/jcathy.db.*
 /bin
 /*.class
 /lib

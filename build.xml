@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." default="jar" name="jcathy">
-	<property name="version" value="0.7.6"/>
+	<property name="version" value="0.7.7"/>
 	
 	<property name="lib" value="lib"/>
 	<property name="src" value="src"/>
@@ -31,6 +31,7 @@
 				<exclude name="*.html"/>
 				<exclude name="MANIFEST.MF"/>
 				<exclude name="*.jar"/>
+				<exclude name="jcathy.db.*"/>
 			</tarfileset>
 		</tar>
 	</target>
@@ -60,7 +61,7 @@
 	
 	<!-- building section -->
 	<target name="build" depends="init" description="Build ${ant.project.name}">
-		<javac debug="false" destdir="${bin}" target="1.6" includeantruntime="false">
+		<javac debug="false" destdir="${bin}" target="1.8" source="1.8" includeantruntime="false">
 			<src path="${src}"/>
 			<classpath refid="classpath"/>
 		</javac>
