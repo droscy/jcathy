@@ -13,9 +13,9 @@ fi
 
 # get java version
 VERSION=$($JAVA -version 2>&1)
-FULL_VERSION=$(expr match "$VERSION" '.*"\([0-9]*\.[0-9]*\.[0-9_]*\)"')
-MAJOR_VERSION=$(expr match "$VERSION" '.*"\([0-9]*\)\.[0-9]*\.[0-9_]*"')
-MINOR_VERSION=$(expr match "$VERSION" '.*"[0-9]*\.\([0-9]*\)\.[0-9_]*"')
+FULL_VERSION=$(expr match "$VERSION" '.*"\([0-9]*\.[0-9]*\.[^"]*\)"')
+MAJOR_VERSION=$(expr match "$VERSION" '.*"\([0-9]*\)\.[0-9]*\.[^"]*"')
+MINOR_VERSION=$(expr match "$VERSION" '.*"[0-9]*\.\([0-9]*\)\.[^"]*"')
 
 # check java version
 if [ "$MAJOR_VERSION" -gt 1 ] || ["$MAJOR_VERSION" -eq 1 -a "$MINOR_VERSION" -ge 6 ]; then
