@@ -18,7 +18,7 @@ MAJOR_VERSION=$(expr match "$VERSION" '.*"\([0-9]*\)\.[0-9]*\.[^"]*"')
 MINOR_VERSION=$(expr match "$VERSION" '.*"[0-9]*\.\([0-9]*\)\.[^"]*"')
 
 # check java version
-if [ "$MAJOR_VERSION" -gt 1 ] || ["$MAJOR_VERSION" -eq 1 -a "$MINOR_VERSION" -ge 6 ]; then
+if [ "$MAJOR_VERSION" -gt 1 ] || ["$MAJOR_VERSION" -eq 1 -a "$MINOR_VERSION" -ge 8 ]; then
 	echo "jCathy is loading..."
 
 	# Edit to following line prepending to jcathy.jar the full path

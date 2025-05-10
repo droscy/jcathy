@@ -60,7 +60,7 @@
 	
 	<!-- building section -->
 	<target name="build" depends="init" description="Build ${ant.project.name}">
-		<javac debug="false" destdir="${bin}" target="1.6" includeantruntime="false">
+		<javac debug="false" destdir="${bin}" target="1.8" source="1.8" includeantruntime="false">
 			<src path="${src}"/>
 			<classpath refid="classpath"/>
 		</javac>
