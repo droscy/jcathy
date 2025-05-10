@@ -2,8 +2,8 @@
 Catalog for files and folders of removable devices.
 
 ## License
-jCathy v0.7.6<br/>
-Copyright (C) 2007-2019 Simone Rossetto <simros85@gmail.com><br/>
+jCathy v0.7.7<br/>
+Copyright (C) 2007-2025 Simone Rossetto <simros85@gmail.com><br/>
 GNU General Public License v3
 
     jCathy is free software: you can redistribute it and/or modify
@@ -97,6 +97,11 @@ dpkg -i jcathy_{version}_all.deb
   volume.
 
 ## Changelog
+* v0.7.7 [2025-05-10]
+
+  - fix java version checking in init script
+  - upgrade minimum java version to 1.8
+
 * v0.7.6 [2019-04-23]
 
   - versioning system migrated to git

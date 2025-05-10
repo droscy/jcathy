@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." default="jar" name="jcathy">
-	<property name="version" value="0.7.6"/>
+	<property name="version" value="0.7.7"/>
 	
 	<property name="lib" value="lib"/>
 	<property name="src" value="src"/>

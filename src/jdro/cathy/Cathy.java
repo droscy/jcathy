@@ -1,10 +1,10 @@
 /*
  +-----------------------------------------------------------------------------
- |  "jCathy" v0.7.6
+ |  "jCathy" v0.7.7
  |  (simple cataloguer for removable devices)
  |  ========================================
  |  by Simone Rossetto
- |  Copyright (C) 2007-2019 Simone Rossetto
+ |  Copyright (C) 2007-2025 Simone Rossetto
  |  E-Mail: simros85@gmail.com
  |  ========================================
  |  File created on 04/nov/07 16:51:26
@@ -39,13 +39,13 @@ import jdro.cathy.resources.Messages;
 /**
  * @mainpage TODO to be written
  * @author Simone Rossetto
- * @version 0.7.6
+ * @version 0.7.7
  */
 public class Cathy
 {
 	public static final String NAME = "jCathy"; //$NON-NLS-1$
-	public static final String VERSION = "v0.7.6"; //$NON-NLS-1$
-	public static final String YEAR = "2007-2019"; //$NON-NLS-1$
+	public static final String VERSION = "v0.7.7"; //$NON-NLS-1$
+	public static final String YEAR = "2007-2025"; //$NON-NLS-1$
 	public static final String ICON_PATH = "jdro/cathy/images/";
 	public static final String ICON_FILENAME = ICON_PATH + "jcathy.png"; //$NON-NLS-1$
 	
